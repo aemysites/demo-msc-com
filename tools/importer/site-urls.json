@@ -1,0 +1,1101 @@
+{
+  "originUrl": "https://www.msc.com",
+  "aborted": false,
+  "lastCrawled": "https://www.msc.com/",
+  "urls": [
+    {
+      "url": "https://www.msc.com/",
+      "source": "CRAWL",
+      "targetPath": "/",
+      "id": "6fa147a73ed3da62bc914d758a80c1b6720e4148"
+    },
+    {
+      "url": "https://www.msc.com/ar",
+      "source": "CRAWL",
+      "targetPath": "/ar",
+      "id": "52c5b04dd948929a6dd9be2c594f102fb2990c17"
+    },
+    {
+      "url": "https://www.msc.com/ar/solutions/digital-solutions/direct-integrations",
+      "source": "CRAWL",
+      "targetPath": "/ar/solutions/digital-solutions/direct-integrations",
+      "id": "c63599cf31d3775afd8ec79dfd11861dfa594b28"
+    },
+    {
+      "url": "https://www.msc.com/ar/solutions/intermodal",
+      "source": "CRAWL",
+      "targetPath": "/ar/solutions/intermodal",
+      "id": "8bfc3ea8aa172666ca1001bb0c137476ba350c89"
+    },
+    {
+      "url": "https://www.msc.com/ar/solutions/liquid-cargo-solution",
+      "source": "CRAWL",
+      "targetPath": "/ar/solutions/liquid-cargo-solution",
+      "id": "7da7439489b9145ae426bd3841781e851c6ff2b6"
+    },
+    {
+      "url": "https://www.msc.com/ar/solutions/our-trade-services",
+      "source": "CRAWL",
+      "targetPath": "/ar/solutions/our-trade-services",
+      "id": "4180c8e183f57370307a81bfeff767b6d817247d"
+    },
+    {
+      "url": "https://www.msc.com/ar/solutions/warehousing",
+      "source": "CRAWL",
+      "targetPath": "/ar/solutions/warehousing",
+      "id": "64df37398da0a2f120c01f5ae12c9b6b609955d0"
+    },
+    {
+      "url": "https://www.msc.com/de/solutions/digital-solutions/smart-containers",
+      "source": "CRAWL",
+      "targetPath": "/de/solutions/digital-solutions/smart-containers",
+      "id": "9db59006a579246df1bee655d5c1a807858a2bf2"
+    },
+    {
+      "url": "https://www.msc.com/de/solutions/intermodal",
+      "source": "CRAWL",
+      "targetPath": "/de/solutions/intermodal",
+      "id": "54a86ce4ce0b8c2d3f6a019310c542e4c17c64e3"
+    },
+    {
+      "url": "https://www.msc.com/de/solutions/liquid-cargo-solution",
+      "source": "CRAWL",
+      "targetPath": "/de/solutions/liquid-cargo-solution",
+      "id": "c3130c8fad8a05af1ed3b6d172f5f6a506e82622"
+    },
+    {
+      "url": "https://www.msc.com/en",
+      "source": "CRAWL",
+      "targetPath": "/en",
+      "id": "c26a5cb492dee7f00b269d854bc7d04bdcaaed3f"
+    },
+    {
+      "url": "https://www.msc.com/en/about-us/management",
+      "source": "CRAWL",
+      "targetPath": "/en/about-us/management",
+      "id": "3b7f25425e41225c492d39c26764edb8c39f751a"
+    },
+    {
+      "url": "https://www.msc.com/en/careers",
+      "source": "CRAWL",
+      "targetPath": "/en/careers",
+      "id": "be11a38a9e6e355061cb34014fcce97f311e0371"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/agriculture/cashews",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/agriculture/cashews",
+      "id": "6beac294b9bcd1d57828f415a71a2f35e6650919"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/agriculture/cocoa",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/agriculture/cocoa",
+      "id": "9d2623f84ba383cc72c4e7dca58dfa362ae52ef7"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/agriculture/cotton",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/agriculture/cotton",
+      "id": "525f5dd3414ecf8e61e23d1475b5561a0ddfa0ba"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/automotive",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/automotive",
+      "id": "968290be2d182d33219153819c5a3741aed21035"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/automotive/complete-cars",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/automotive/complete-cars",
+      "id": "6e3c72566e13ca11be4f6e982f0557cab070fd7b"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/chemicals-and-petrochemicals",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/chemicals-and-petrochemicals",
+      "id": "11d9fc196d5ceea20d131163e64fe58dbbe76146"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/food-and-beverages/beverages",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/food-and-beverages/beverages",
+      "id": "050e35ea66d13de7f5c612a463ab45ebd439e802"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/food-and-beverages/meat",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/food-and-beverages/meat",
+      "id": "ffc2ad992d9f2db6ab3c154444f3d874d47df024"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/food-and-beverages/seafood",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/food-and-beverages/seafood",
+      "id": "dc7eddc35a0156e9911c044723bd51c65085a6d3"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/food-and-beverages/tea",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/food-and-beverages/tea",
+      "id": "b8677ba2d1c8a86dc374d3d5da1a9a54ae34ebfc"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/fruits/avocados",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/fruits/avocados",
+      "id": "dee2da73dc5a95f90fceb7dfc133cd7c74bca77c"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/fruits/citrus",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/fruits/citrus",
+      "id": "71e9b2a1463f988f4e9a5ba346730471e286e37c"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/fruits/mangoes",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/fruits/mangoes",
+      "id": "35c74b67afdc07ec8d1e62bb62123157700e613f"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/mining-and-minerals",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/mining-and-minerals",
+      "id": "4d941096c292316d7c7653d8ddee058fb6f53ed1"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/pulp-paper-and-forestry-products",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/pulp-paper-and-forestry-products",
+      "id": "7dc2f1caf299d3c46bac9bdd6d3b345ddef2bf15"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/retail/cosmetics",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/retail/cosmetics",
+      "id": "a74b8e788b27d57dadbe8a616a158e60a2bd0630"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/retail/white-goods-and-electronics",
+      "source": "CRAWL",
+      "targetPath": "/en/industries/retail/white-goods-and-electronics",
+      "id": "19c95fb125b53b839d7fefbcd6bbeacdb5eaea3f"
+    },
+    {
+      "url": "https://www.msc.com/en/lp/blog",
+      "source": "CRAWL",
+      "targetPath": "/en/lp/blog",
+      "id": "575b5f45aae6ccf092b9cbd27292fd0a4d991229"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/customer-advisories",
+      "source": "CRAWL",
+      "targetPath": "/en/newsroom/customer-advisories",
+      "id": "b62175c09416fdc03a33cbc4bfa10028532b873d"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/customer-advisories/2025/june/us-gulf-to-saec-string-1-service-operations-at-santos-btp-terminal-are-resuming",
+      "source": "CRAWL",
+      "targetPath": "/en/newsroom/customer-advisories/2025/june/us-gulf-to-saec-string-1-service-operations-at-santos-btp-terminal-are-resuming",
+      "id": "64cbf400bb21b991d6b0e78812372f1234019c42"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/news",
+      "source": "CRAWL",
+      "targetPath": "/en/newsroom/news",
+      "id": "3dd176ed61f97d176170f28320c96a1d7826ec5c"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/news/2025/july/tracking-your-shipment-sign-up-for-automatic-email-updates-on-msc-com",
+      "source": "CRAWL",
+      "targetPath": "/en/newsroom/news/2025/july/tracking-your-shipment-sign-up-for-automatic-email-updates-on-msc-com",
+      "id": "b979089c4d95f73ec471ab00f03984fbd90fa2d1"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/news/local-news/united-states/2025/august/msc-supports-the-2025-genuine-cup-promoting-inclusion-through-sport",
+      "source": "CRAWL",
+      "targetPath": "/en/newsroom/news/local-news/united-states/2025/august/msc-supports-the-2025-genuine-cup-promoting-inclusion-through-sport",
+      "id": "bad68d17b02dc9da92a94311da313af18246be49"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/stories/customer-testimonial-how-mscs-track-and-trace-api-improve-shipment-visibility",
+      "source": "CRAWL",
+      "targetPath": "/en/newsroom/stories/customer-testimonial-how-mscs-track-and-trace-api-improve-shipment-visibility",
+      "id": "40f3eb788f77eb377bd84fa0b82f6afab9a9b6be"
+    },
+    {
+      "url": "https://www.msc.com/en/personal-data-request",
+      "source": "CRAWL",
+      "targetPath": "/en/personal-data-request",
+      "id": "1fc4f22ef5bc831f3b303c6230232c8ea15c8827"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/air-cargo-solution",
+      "source": "CRAWL",
+      "targetPath": "/en/solutions/air-cargo-solution",
+      "id": "47e4e48bd00b67d64dde6e850b2f48c5951af0d8"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/digital-solutions/direct-integrations",
+      "source": "CRAWL",
+      "targetPath": "/en/solutions/digital-solutions/direct-integrations",
+      "id": "24a490ea1a7bf3b00b4cce3b1309b8d7847d89d6"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/digital-solutions/ireefer",
+      "source": "CRAWL",
+      "targetPath": "/en/solutions/digital-solutions/ireefer",
+      "id": "37ae45bf62821c4f248637785ee4b63a129d4f9e"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/digital-solutions/smart-containers",
+      "source": "CRAWL",
+      "targetPath": "/en/solutions/digital-solutions/smart-containers",
+      "id": "6e5abf3368ce061cc98c51d64d8decedf2ab3cd1"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/extended-protection",
+      "source": "CRAWL",
+      "targetPath": "/en/solutions/extended-protection",
+      "id": "69cdc3a8f4b2a68750db80a48e59bff8a838bc74"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/intermodal",
+      "source": "CRAWL",
+      "targetPath": "/en/solutions/intermodal",
+      "id": "d1df39ab2165ecb13ab4a919cf5674d3f0e0115d"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/liquid-cargo-solution",
+      "source": "CRAWL",
+      "targetPath": "/en/solutions/liquid-cargo-solution",
+      "id": "9a8fca2d0973d0520bcd536b36b0323319733aad"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/our-trade-services",
+      "source": "CRAWL",
+      "targetPath": "/en/solutions/our-trade-services",
+      "id": "65c50ff8136248cbbb1610f8a99511c2cae61aa8"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/our-trade-services/transatlantic-services",
+      "source": "CRAWL",
+      "targetPath": "/en/solutions/our-trade-services/transatlantic-services",
+      "id": "cbc76da4e269f27018b4d28f8fed840ec11e6852"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/project-cargo",
+      "source": "CRAWL",
+      "targetPath": "/en/solutions/project-cargo",
+      "id": "d3f77e63f2abe8796bc04e2a53013be1655f2a2a"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/thermal-liner-solution",
+      "source": "CRAWL",
+      "targetPath": "/en/solutions/thermal-liner-solution",
+      "id": "6818f91b378cfcdc2288716a1ee822d929805f9a"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/warehousing",
+      "source": "CRAWL",
+      "targetPath": "/en/solutions/warehousing",
+      "id": "f92fe15a6caba2269653c99fe172f9387a82171d"
+    },
+    {
+      "url": "https://www.msc.com/en/speak-up",
+      "source": "CRAWL",
+      "targetPath": "/en/speak-up",
+      "id": "411d4b15fb4aa3cd044352336c6a4e16d9114a99"
+    },
+    {
+      "url": "https://www.msc.com/en/sustainability",
+      "source": "CRAWL",
+      "targetPath": "/en/sustainability",
+      "id": "90ff13a039f09a3b592337f58120b0d68d833cfb"
+    },
+    {
+      "url": "https://www.msc.com/en/sustainability/addressing-social-challenges",
+      "source": "CRAWL",
+      "targetPath": "/en/sustainability/addressing-social-challenges",
+      "id": "fd9a59783f62f8335b0625f0a77b33df416b227d"
+    },
+    {
+      "url": "https://www.msc.com/en/sustainability/certifications",
+      "source": "CRAWL",
+      "targetPath": "/en/sustainability/certifications",
+      "id": "e639dbda69b28f1e55e9e8605d751667b56112c4"
+    },
+    {
+      "url": "https://www.msc.com/en/sustainability/enabling-logistics-decarbonization",
+      "source": "CRAWL",
+      "targetPath": "/en/sustainability/enabling-logistics-decarbonization",
+      "id": "f3320c60dcade3de3d6df05effc5ef508d3e5395"
+    },
+    {
+      "url": "https://www.msc.com/en/sustainability/fostering-inclusive-trade",
+      "source": "CRAWL",
+      "targetPath": "/en/sustainability/fostering-inclusive-trade",
+      "id": "f42b03f487ab25a8df24457c26f4083726dae630"
+    },
+    {
+      "url": "https://www.msc.com/en/sustainability/msc-modern-slavery-transparency-statement",
+      "source": "CRAWL",
+      "targetPath": "/en/sustainability/msc-modern-slavery-transparency-statement",
+      "id": "aadbb14ff1408f6ecbf7591c25b5a3afd87495f7"
+    },
+    {
+      "url": "https://www.msc.com/en/sustainability/msc-ship-recycling-policy",
+      "source": "CRAWL",
+      "targetPath": "/en/sustainability/msc-ship-recycling-policy",
+      "id": "2ddbf8ed96e6bc68f7456656be5b8b8a21d27e60"
+    },
+    {
+      "url": "https://www.msc.com/en/sustainability/msc-supplier-code-of-conduct",
+      "source": "CRAWL",
+      "targetPath": "/en/sustainability/msc-supplier-code-of-conduct",
+      "id": "8bfbcf762a7798d22e1b61a8d45aeb1c67fb08c4"
+    },
+    {
+      "url": "https://www.msc.com/en/sustainability/partnerships",
+      "source": "CRAWL",
+      "targetPath": "/en/sustainability/partnerships",
+      "id": "96bfcf426fbb4750cff160656803b4300bb54079"
+    },
+    {
+      "url": "https://www.msc.com/en/terms-and-conditions",
+      "source": "CRAWL",
+      "targetPath": "/en/terms-and-conditions",
+      "id": "5aeb5646efb11b982dccaa8b5199397f30c76c62"
+    },
+    {
+      "url": "https://www.msc.com/es",
+      "source": "CRAWL",
+      "targetPath": "/es",
+      "id": "acf87a89991e8bd456f9484ae75153aa98e610bd"
+    },
+    {
+      "url": "https://www.msc.com/es/solutions/air-cargo-solution",
+      "source": "CRAWL",
+      "targetPath": "/es/solutions/air-cargo-solution",
+      "id": "35f4d6d0dae8e501206b30726a77755a9b4718db"
+    },
+    {
+      "url": "https://www.msc.com/es/solutions/intermodal",
+      "source": "CRAWL",
+      "targetPath": "/es/solutions/intermodal",
+      "id": "c89d8a1edc93fd896fe60192870e3e390e1fea83"
+    },
+    {
+      "url": "https://www.msc.com/es/solutions/liquid-cargo-solution",
+      "source": "CRAWL",
+      "targetPath": "/es/solutions/liquid-cargo-solution",
+      "id": "78dc30fa5d6ad834a95dfe18bf8ec65063f53ae4"
+    },
+    {
+      "url": "https://www.msc.com/fr",
+      "source": "CRAWL",
+      "targetPath": "/fr",
+      "id": "c5c7615da7329155b0d30781dfc3267399aa18f0"
+    },
+    {
+      "url": "https://www.msc.com/fr/solutions/air-cargo-solution",
+      "source": "CRAWL",
+      "targetPath": "/fr/solutions/air-cargo-solution",
+      "id": "bf99aaa0643805c6d23db318bb45f97f6e56903b"
+    },
+    {
+      "url": "https://www.msc.com/fr/solutions/liquid-cargo-solution",
+      "source": "CRAWL",
+      "targetPath": "/fr/solutions/liquid-cargo-solution",
+      "id": "30c34102edabb87d0d2412dcbd21ebc3fbeaf759"
+    },
+    {
+      "url": "https://www.msc.com/fr/solutions/project-cargo",
+      "source": "CRAWL",
+      "targetPath": "/fr/solutions/project-cargo",
+      "id": "1fc17d56ff3dddf1f8369876d0c63c9da1a8e9af"
+    },
+    {
+      "url": "https://www.msc.com/it",
+      "source": "CRAWL",
+      "targetPath": "/it",
+      "id": "13c392126ae2abb7b0071ad87d896e63ff6a4b81"
+    },
+    {
+      "url": "https://www.msc.com/it/solutions/digital-solutions/direct-integrations",
+      "source": "CRAWL",
+      "targetPath": "/it/solutions/digital-solutions/direct-integrations",
+      "id": "d3c1ab60788f464c7cdea698b133a002d56a3fac"
+    },
+    {
+      "url": "https://www.msc.com/it/solutions/digital-solutions/smart-containers",
+      "source": "CRAWL",
+      "targetPath": "/it/solutions/digital-solutions/smart-containers",
+      "id": "a5c252d338241bd425683f9504e7e90daa86c6f6"
+    },
+    {
+      "url": "https://www.msc.com/it/solutions/project-cargo",
+      "source": "CRAWL",
+      "targetPath": "/it/solutions/project-cargo",
+      "id": "97d3a7b220cc2d42c14f39edc4e22e598e832970"
+    },
+    {
+      "url": "https://www.msc.com/ja",
+      "source": "CRAWL",
+      "targetPath": "/ja",
+      "id": "e1aace4dc6bad264b63c7b1c7f970937bb392811"
+    },
+    {
+      "url": "https://www.msc.com/ja/solutions/air-cargo-solution",
+      "source": "CRAWL",
+      "targetPath": "/ja/solutions/air-cargo-solution",
+      "id": "d3e4b0f8df845e8747772099e01e1652e8e97b1d"
+    },
+    {
+      "url": "https://www.msc.com/ja/solutions/digital-solutions/smart-containers",
+      "source": "CRAWL",
+      "targetPath": "/ja/solutions/digital-solutions/smart-containers",
+      "id": "c6fe38f185ec75281ea8338e7c65bf583e4422d0"
+    },
+    {
+      "url": "https://www.msc.com/ja/solutions/liquid-cargo-solution",
+      "source": "CRAWL",
+      "targetPath": "/ja/solutions/liquid-cargo-solution",
+      "id": "739f7694307d6d7ee341d70a97c45a519a3941d0"
+    },
+    {
+      "url": "https://www.msc.com/ja/solutions/our-trade-services",
+      "source": "CRAWL",
+      "targetPath": "/ja/solutions/our-trade-services",
+      "id": "80852f41525ebcc54f50722e31b74dbfec8fe4be"
+    },
+    {
+      "url": "https://www.msc.com/ja/solutions/project-cargo",
+      "source": "CRAWL",
+      "targetPath": "/ja/solutions/project-cargo",
+      "id": "6cfe4a30b1426f1cafa588cba041da4e8a276d06"
+    },
+    {
+      "url": "https://www.msc.com/ko",
+      "source": "CRAWL",
+      "targetPath": "/ko",
+      "id": "b86d2ef9fc02ba1ebd5d8cf0add25242890ccfcc"
+    },
+    {
+      "url": "https://www.msc.com/ko/solutions/digital-solutions/direct-integrations",
+      "source": "CRAWL",
+      "targetPath": "/ko/solutions/digital-solutions/direct-integrations",
+      "id": "36750341e30d6f66aa0df5d585044ef58a7cb2e3"
+    },
+    {
+      "url": "https://www.msc.com/ko/solutions/digital-solutions/smart-containers",
+      "source": "CRAWL",
+      "targetPath": "/ko/solutions/digital-solutions/smart-containers",
+      "id": "6988bdcedb74d4bda08fc7ffbdc730ea7c27d3ab"
+    },
+    {
+      "url": "https://www.msc.com/ko/solutions/intermodal",
+      "source": "CRAWL",
+      "targetPath": "/ko/solutions/intermodal",
+      "id": "9ebd52e7a8890ce16fee11f9c0b2bb1450e18565"
+    },
+    {
+      "url": "https://www.msc.com/ko/solutions/warehousing",
+      "source": "CRAWL",
+      "targetPath": "/ko/solutions/warehousing",
+      "id": "d485021cf84b09c36dbc1ba495945fa2168ee506"
+    },
+    {
+      "url": "https://www.msc.com/pt/solutions/digital-solutions/direct-integrations",
+      "source": "CRAWL",
+      "targetPath": "/pt/solutions/digital-solutions/direct-integrations",
+      "id": "7b21228ccff127bdd5a95b6787a1ac0d6459821c"
+    },
+    {
+      "url": "https://www.msc.com/pt/solutions/digital-solutions/smart-containers",
+      "source": "CRAWL",
+      "targetPath": "/pt/solutions/digital-solutions/smart-containers",
+      "id": "055e19b67d8d5d00cf448e2fe9fcfe1497e9a03a"
+    },
+    {
+      "url": "https://www.msc.com/pt/solutions/liquid-cargo-solution",
+      "source": "CRAWL",
+      "targetPath": "/pt/solutions/liquid-cargo-solution",
+      "id": "9b9d28922cfd917dcfb85a3cb1940d40963367c2"
+    },
+    {
+      "url": "https://www.msc.com/pt/solutions/warehousing",
+      "source": "CRAWL",
+      "targetPath": "/pt/solutions/warehousing",
+      "id": "590324c5968d6b01f005029f7e3d7c5aeb9f13bc"
+    },
+    {
+      "url": "https://www.msc.com/ru",
+      "source": "CRAWL",
+      "targetPath": "/ru",
+      "id": "55827ac2196b695d3cf2f50f8a3e1b194e35a984"
+    },
+    {
+      "url": "https://www.msc.com/ru/solutions/air-cargo-solution",
+      "source": "CRAWL",
+      "targetPath": "/ru/solutions/air-cargo-solution",
+      "id": "8d9bda47d5935269cdeceb8b3ffa81ff91e4a776"
+    },
+    {
+      "url": "https://www.msc.com/ru/solutions/our-trade-services",
+      "source": "CRAWL",
+      "targetPath": "/ru/solutions/our-trade-services",
+      "id": "dce6bfdae02a0efca839a4924524dbebe4b9fe33"
+    },
+    {
+      "url": "https://www.msc.com/ru/solutions/warehousing",
+      "source": "CRAWL",
+      "targetPath": "/ru/solutions/warehousing",
+      "id": "6999d31416fa7d8fd81f22c1882df7230343e9c7"
+    },
+    {
+      "url": "https://www.msc.com/tr/solutions/air-cargo-solution",
+      "source": "CRAWL",
+      "targetPath": "/tr/solutions/air-cargo-solution",
+      "id": "787d760b9e4129ab86560f2c3cd9ecc4ca776a11"
+    },
+    {
+      "url": "https://www.msc.com/tr/solutions/digital-solutions/direct-integrations",
+      "source": "CRAWL",
+      "targetPath": "/tr/solutions/digital-solutions/direct-integrations",
+      "id": "bc6530271f7bad3f322090a08d34c5fc2d0e10a8"
+    },
+    {
+      "url": "https://www.msc.com/tr/solutions/digital-solutions/smart-containers",
+      "source": "CRAWL",
+      "targetPath": "/tr/solutions/digital-solutions/smart-containers",
+      "id": "612632d3450b7dadd5dc692ae81b7144639d2603"
+    },
+    {
+      "url": "https://www.msc.com/tr/solutions/project-cargo",
+      "source": "CRAWL",
+      "targetPath": "/tr/solutions/project-cargo",
+      "id": "80976d4cbc5b93675d5c04951cd755918d2693b5"
+    },
+    {
+      "url": "https://www.msc.com/tr/solutions/warehousing",
+      "source": "CRAWL",
+      "targetPath": "/tr/solutions/warehousing",
+      "id": "27ed629663fcc9cd01c18be5ea0062370f687e51"
+    },
+    {
+      "url": "https://www.msc.com/zh/solutions/digital-solutions/direct-integrations",
+      "source": "CRAWL",
+      "targetPath": "/zh/solutions/digital-solutions/direct-integrations",
+      "id": "b70fb59d07bb1669b9cda970e2482ea119c652df"
+    },
+    {
+      "url": "https://www.msc.com/zh/solutions/digital-solutions/smart-containers",
+      "source": "CRAWL",
+      "targetPath": "/zh/solutions/digital-solutions/smart-containers",
+      "id": "a30093d93e5aeb6f1ac59d37ecf1b142e37ea12f"
+    },
+    {
+      "url": "https://www.msc.com/zh/solutions/liquid-cargo-solution",
+      "source": "CRAWL",
+      "targetPath": "/zh/solutions/liquid-cargo-solution",
+      "id": "a2187ac50025cbc7170f960f455b3609ec2d483f"
+    },
+    {
+      "url": "https://www.msc.com/zh/solutions/warehousing",
+      "source": "CRAWL",
+      "targetPath": "/zh/solutions/warehousing",
+      "id": "595d73fd9e45ba5978d1fb6e1a245e1ebe5c9975"
+    }
+  ],
+  "crawlOptions": {
+    "timeout": 64800000,
+    "inclusionPatterns": [],
+    "exclusionPatterns": [],
+    "limit": 100,
+    "sameDomain": true,
+    "keepHash": false,
+    "strategy": "crawl",
+    "logger": {},
+    "strategiesAttempted": [
+      "SITEMAPS",
+      "CRAWL"
+    ]
+  },
+  "extractionErrors": [
+    {
+      "url": "https://www.msc.com/en/solutions/shipping-solutions",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/dry-cargo",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/reefer-cargo",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/inland-solutions",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/air-cargo-solution/business-hub/air-cargo-schedule",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/air-cargo-solution/business-hub/air-cargo-tracking",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/air-cargo-solution/business-hub/air-cargo-quote",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/air-cargo-solution/business-hub/policies",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/digital-solutions",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/digital-solutions/ebl",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/peace-of-mind-solutions",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/cargo-insurance",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/agriculture",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/agriculture/coffee",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/agriculture/dried-fruits-and-nuts",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/agriculture/rice",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/agriculture/sesame",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/agriculture/sugar",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/automotive/used-cars",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/automotive/car-parts",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/plastics-and-rubber-products",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/food-and-beverages",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/food-and-beverages/dairy-and-milk-products",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/fruits",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/fruits/bananas",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/fruits/cherries",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/fruits/vegetables",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/pharma",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/retail",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/industries/retail/apparel",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/ebusiness",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/sustainability/enabling-logistics-decarbonization/journey-to-net-zero",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/carbon-calculator",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/sustainability/blue-planet/whale-protection",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/sustainability",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/sustainability/msc-code-of-conduct",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/about-us/msc-foundation",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/about-us/msc-group",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/search-a-schedule",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/track-a-shipment",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/events",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/local-information",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/contact-us",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/tools",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/tr",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/pt",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/zh",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/de",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/our-trade-services/east-west-network",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/about-us",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/news/2025/august/msc-announces-participation-at-alsc-global-2025-to-showcase-automotive-supply-chain-expertise",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/news/2025/august/keeping-your-fruit-fresh-connect-with-mscs-experts-at-afl-2025",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/news/2025/july/msc-launches-fast-new-alpaca-service-for-trade-far-east-to-south-america-west-coast",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/news/2025/july/iroko-a-new-direct-service-connecting-asia-and-west-africa",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/customer-advisories/2025/august/msc-introduces-new-standalone-service-connecting-usa-and-africa",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/customer-advisories/2025/july/port-rotation-change-emusa-service",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/customer-advisories/2025/july/msc-launches-enhanced-standalone-direct-service-from-australia-new-zealand-to-usa-east-coast",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/customer-advisories/2025/july/cgs-trade-ipak-middle-east-to-guinea",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/customer-advisories/2025/july/asia-to-uswc-network-update-9-july-2025-update",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/customer-advisories/2025/july/low-water-surcharge-trade-from-west-med-adriatic-israel-and-north-europe-to-canada",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/customer-advisories/2025/july/price-announcement-sri-lanka-bangladesh-to-europe",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/customer-advisories/2025/june/price-announcement-india-pakistan-to-europe",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/data-privacy",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/carrier-terms",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/es/solutions/project-cargo",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ru/solutions/project-cargo",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/pt/solutions/project-cargo",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/zh/solutions/project-cargo",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ar/solutions/project-cargo",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/de/solutions/project-cargo",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ko/solutions/project-cargo",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/tr/solutions/liquid-cargo-solution",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ru/solutions/liquid-cargo-solution",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ko/solutions/liquid-cargo-solution",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/it/solutions/liquid-cargo-solution",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/lp/blog/solutions/belgium-liquid-cargo-export",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/es/solutions/our-trade-services",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/tr/solutions/our-trade-services",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/fr/solutions/our-trade-services",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/pt/solutions/our-trade-services",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/zh/solutions/our-trade-services",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/de/solutions/our-trade-services",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ko/solutions/our-trade-services",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/it/solutions/our-trade-services",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/solutions/european-and-short-sea-network",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/tr/solutions/intermodal",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/fr/solutions/intermodal",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ru/solutions/intermodal",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/pt/solutions/intermodal",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/zh/solutions/intermodal",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ja/solutions/intermodal",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/it/solutions/intermodal",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/es/solutions/warehousing",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/fr/solutions/warehousing",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/de/solutions/warehousing",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ja/solutions/warehousing",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/it/solutions/warehousing",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/lp/blog/key-terms/supply-chain-business-guide",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/pt/solutions/air-cargo-solution",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/zh/solutions/air-cargo-solution",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ar/solutions/air-cargo-solution",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/de/solutions/air-cargo-solution",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ko/solutions/air-cargo-solution",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/it/solutions/air-cargo-solution",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/es/solutions/digital-solutions/direct-integrations",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/fr/solutions/digital-solutions/direct-integrations",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ru/solutions/digital-solutions/direct-integrations",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/de/solutions/digital-solutions/direct-integrations",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ja/solutions/digital-solutions/direct-integrations",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/privacy-policy",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/es/solutions/digital-solutions/smart-containers",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/fr/solutions/digital-solutions/smart-containers",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ru/solutions/digital-solutions/smart-containers",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/ar/solutions/digital-solutions/smart-containers",
+      "status": "403 Forbidden"
+    },
+    {
+      "url": "https://www.msc.com/en/newsroom/stories/msc-digital-talks-episode-5-unpacking-the-benefits-of-smart-containers",
+      "status": "403 Forbidden"
+    }
+  ]
+}
