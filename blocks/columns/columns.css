@@ -1077,7 +1077,7 @@
   text-align: left;
   margin: 0 0 3px;
   padding: 0;
-  word-break: break-word;
+  word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
@@ -1232,8 +1232,6 @@
   }
 }
 
-
-/* Main columns block with strong selector for background and color */
 .columns.columns33.block.columns-3-cols {
   background-image:
     linear-gradient(rgb(0 0 0 / 48%), rgb(0 0 0 / 48%)),
@@ -1259,11 +1257,8 @@
   min-height: 660px;
   align-items: stretch;
   justify-content: space-evenly;
-
-  /* allow columns to fill space more evenly */
 }
 
-/* Responsive: stack columns vertically below 900px */
 @media (width <= 900px) {
   .columns.columns33.block.columns-3-cols > div {
     flex-direction: column;
@@ -1280,7 +1275,6 @@
   }
 }
 
-/* Individual columns: flex vertical, centered, more max-width for balance */
 .columns.columns33.block.columns-3-cols > div > div {
   flex: 1 1 0;
   display: flex;
@@ -1314,7 +1308,6 @@
   }
 }
 
-/* Vertical divider between columns, except last */
 .columns.columns33.block.columns-3-cols > div > div:not(:last-child) {
   border-right: 1.5px solid rgb(255 255 255 / 28%);
 }
@@ -1326,7 +1319,6 @@
   }
 }
 
-/* Headings: bolder, bigger, more space below */
 .columns.columns33.block.columns-3-cols > div > div > p {
   color: #fff;
   font-family: var(--heading-font-family);
@@ -1339,7 +1331,6 @@
   text-transform: uppercase;
 }
 
-/* Lists: larger font, more space between items */
 .columns.columns33.block.columns-3-cols > div > div > ul {
   list-style: none;
   margin: 0 0 24px;
@@ -1350,7 +1341,6 @@
   gap: 22px;
 }
 
-/* List items: larger font, white, wrap long content, no overlap */
 .columns.columns33.block.columns-3-cols > div > div > ul > li {
   width: 100%;
   margin: 0;
@@ -1361,12 +1351,11 @@
   font-family: var(--body-font-family);
   font-weight: 500;
   line-height: 1.5;
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  overflow-wrap: break-word;
+  word-break: normal;
   white-space: normal;
 }
 
-/* Links: white, no underline by default, underline only on hover/focus, wrap long links */
 .columns.columns33.block.columns-3-cols > div > div > ul > li > a,
 .columns.columns33.block.columns-3-cols > div > div > ul > li > a:visited {
   color: #fff;
@@ -1382,8 +1371,8 @@
   box-sizing: border-box;
   white-space: normal;
   border: none;
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .columns.columns33.block.columns-3-cols > div > div > ul > li > a:hover,
@@ -1394,7 +1383,6 @@
   background: none;
 }
 
-/* Remove button styles for .button if present */
 .columns.columns33.block.columns-3-cols a.button,
 .columns.columns33.block.columns-3-cols > div > div > ul > li > a.button {
   background: none;
@@ -1407,16 +1395,178 @@
   margin: 0;
 }
 
-/* Remove list styles from all nested ul */
 .columns.columns33.block.columns-3-cols ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Ensure column content remains centered vertically */
 @media (width >= 900px) {
   .columns.columns33.block.columns-3-cols > div > div {
     justify-content: center;
+  }
+}
+
+
+.columns.columns47 {
+  max-width: 900px;
+  margin: 56px auto;
+  padding: 0;
+  background: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.columns.columns47 > div {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 520px;
+  align-items: stretch;
+  background: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.columns.columns47 > div > .columns-img-col {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 520px;
+  background: #203924;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 0;
+  overflow: hidden;
+  height: auto;
+}
+
+.columns.columns47 > div > .columns-img-col picture,
+.columns.columns47 > div > .columns-img-col img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.columns.columns47 > div > div:not(.columns-img-col) {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 56px 40px;
+  text-align: center;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+}
+
+.columns.columns47 > div > div:not(.columns-img-col) h3 {
+  color: #212121;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 0 0 2.25rem;
+  text-align: center;
+  width: 100%;
+}
+
+.columns.columns47 > div > div:not(.columns-img-col) p {
+  color: #444;
+  font-size: 1rem;
+  margin: 0 0 1.5rem;
+  font-family: var(--body-font-family);
+  text-align: center;
+  line-height: 1.5;
+  width: 100%;
+}
+
+.columns.columns47 .button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2.25rem;
+}
+
+.columns.columns47 .button-container .button {
+  background: #E8D18A;
+  color: #444;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  text-align: center;
+  margin: 0;
+  box-shadow: none;
+  border: none;
+  transition: background 0.2s;
+  display: inline-block;
+}
+
+.columns.columns47 .button-container .button:hover,
+.columns.columns47 .button-container .button:focus {
+  background: #d6c06e;
+  color: #444;
+}
+
+/* Responsive: stack vertically on small screens */
+@media (width <= 900px) {
+  .columns.columns47 {
+    max-width: 100vw;
+    min-height: unset;
+    margin: 32px 0;
+    padding: 0;
+  }
+
+  .columns.columns47 > div {
+    flex-direction: column;
+    min-height: 0;
+    align-items: stretch;
+  }
+
+  .columns.columns47 > div > .columns-img-col,
+  .columns.columns47 > div > div:not(.columns-img-col) {
+    width: 100%;
+    min-width: 0;
+    min-height: 220px;
+    padding: 24px 12px;
+    margin: 0;
+    position: relative;
+  }
+
+  .columns.columns47 > div > div:not(.columns-img-col) {
+    max-width: 100vw;
+    padding: 32px 12px;
+  }
+}
+
+@media (width <= 600px) {
+  .columns.columns47 {
+    margin: 16px 0;
+    padding: 0;
+  }
+
+  .columns.columns47 > div > .columns-img-col,
+  .columns.columns47 > div > div:not(.columns-img-col) {
+    min-height: 120px;
+    padding: 12px 4px;
+  }
+
+  .columns.columns47 > div > div:not(.columns-img-col) {
+    max-width: 100vw;
+    padding: 20px 4px;
+  }
+
+  .columns.columns47 > div > div:not(.columns-img-col) h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
   }
 }
