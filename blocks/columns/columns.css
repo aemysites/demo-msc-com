@@ -44,7 +44,6 @@
   padding: 0;
 }
 
-/* Let each block row be a flex row, not a grid or column */
 .columns.columns10 > div {
   display: contents;
 }
@@ -58,18 +57,14 @@
   background: #fff;
   margin: 0;
   padding: 0;
-  min-height: 360px; /* Ensures visual block size matches original */
+  min-height: 360px;
 }
 
-/* Checkerboard alternation for image/text blocks */
 .columns.columns10 > div > div:nth-of-type(2),
 .columns.columns10 > div > div:nth-of-type(4) {
   flex-direction: row-reverse;
 }
 
-/* --- IMAGE HALF --- */
-
-/* Target first p (which wraps picture/img); let it fill left half and stretch vertically */
 .columns.columns10 > div > div > p:first-child {
   flex: 0 0 50%;
   max-width: 50%;
@@ -83,7 +78,6 @@
   box-sizing: border-box;
 }
 
-/* Make image/picture fill the available space (cover, centered) */
 .columns.columns10 > div > div > p:first-child picture,
 .columns.columns10 > div > div > p:first-child img {
   width: 100%;
@@ -97,9 +91,6 @@
   box-sizing: border-box;
 }
 
-/* --- TEXT HALF --- */
-
-/* Everything except first p is text half - group and center content vertically */
 .columns.columns10 > div > div > *:not(p:first-child) {
   flex: 1 1 50%;
   max-width: 50%;
@@ -113,7 +104,6 @@
   box-sizing: border-box;
 }
 
-/* Typography settings for headings/body */
 .columns.columns10 h2 {
   font-size: 2rem;
   font-weight: 700;
@@ -142,7 +132,6 @@
   margin-bottom: 8px;
 }
 
-/* Responsive: stack image above text for each block on small screens */
 @media (width <= 900px) {
   .columns.columns10 {
     gap: 40px;
@@ -167,5 +156,163 @@
   .columns.columns10 > div > div > p:first-child img {
     min-height: 120px;
     height: auto;
+  }
+}
+
+
+.columns.columns11 {
+  background: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+/* Layout: columns side by side */
+.columns.columns11 > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 48px;
+  width: 100%;
+}
+
+@media (width <= 900px) {
+  .columns.columns11 > div {
+    flex-direction: column;
+    gap: 32px;
+  }
+}
+
+/* Each column: vertically stacked, centered */
+.columns.columns11 > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 0;
+  flex: 1 1 0;
+  padding: 0;
+  position: relative;
+}
+
+/* Top icon placeholders for first three columns using background SVGs, tight top margin */
+.columns.columns11 > div > div:nth-child(1) {
+  min-height: 100px;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' stroke='%23222222' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='22' r='10'/%3E%3Crect x='18' y='10' width='4' height='4'/%3E%3Cpath d='M20 22 V16'/%3E%3C/svg%3E") no-repeat top center;
+  background-size: 40px 40px;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.columns.columns11 > div > div:nth-child(2) {
+  min-height: 100px;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' stroke='%23222222' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='12' y='18' width='16' height='12'/%3E%3Crect x='10' y='14' width='20' height='4'/%3E%3Cpath d='M10 14 L12 8 H28 L30 14'/%3E%3C/svg%3E") no-repeat top center;
+  background-size: 40px 40px;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.columns.columns11 > div > div:nth-child(3) {
+  min-height: 100px;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' stroke='%23222222' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='10' y='18' width='20' height='10'/%3E%3Ccircle cx='13' cy='30' r='2'/%3E%3Ccircle cx='27' cy='30' r='2'/%3E%3Cpath d='M20 13 L23 16 M20 13 L17 16'/%3E%3C/svg%3E") no-repeat top center;
+  background-size: 40px 40px;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.columns.columns11 > div > div:nth-child(4) {
+  min-height: 100px;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* iReefer image sizing and spacing: tight to top, tight to divider */
+.columns.columns11 > div > div:nth-child(4) picture,
+.columns.columns11 > div > div:nth-child(4) img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 12px;
+  object-fit: contain;
+  max-width: 40px;
+  max-height: 40px;
+}
+
+/* Dotted divider: place AFTER icon/image and BEFORE text for each column */
+
+.columns.columns11 > div > div:nth-child(1)::after,
+.columns.columns11 > div > div:nth-child(2)::after,
+.columns.columns11 > div > div:nth-child(3)::after {
+  display: block;
+  width: 64px;
+  height: 8px;
+  margin: 12px auto 16px;
+  background-image: repeating-radial-gradient(circle, #F8E6A0 0 2px, transparent 2px 12px);
+  background-repeat: repeat-x;
+  background-size: 12px 8px;
+  border: none;
+
+  /* Use empty string for content so it's strictly decorative */
+
+  /* To visually create a divider between icon background and text */
+  content: "";
+}
+
+.columns.columns11 > div > div:nth-child(1) p:first-child,
+.columns.columns11 > div > div:nth-child(2) p:first-child,
+.columns.columns11 > div > div:nth-child(3) p:first-child {
+  margin-top: 0;
+}
+
+/* iReefer divider after image */
+.columns.columns11 > div > div:nth-child(4) picture + p,
+.columns.columns11 > div > div:nth-child(4) img + p {
+  position: relative;
+  margin-top: 0;
+}
+
+.columns.columns11 > div > div:nth-child(4) picture + p::before,
+.columns.columns11 > div > div:nth-child(4) img + p::before {
+  display: block;
+  width: 64px;
+  height: 8px;
+  margin: 12px auto 16px;
+  background-image: repeating-radial-gradient(circle, #F8E6A0 0 2px, transparent 2px 12px);
+  background-repeat: repeat-x;
+  background-size: 12px 8px;
+  border: none;
+  content: "";
+}
+
+/* Only apply divider before the first block of text in the 4th column */
+.columns.columns11 > div > div:nth-child(4) p:not(:first-child)::before {
+  display: none;
+}
+
+/* Text styling */
+.columns.columns11 > div > div p {
+  color: #555;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  margin: 0;
+}
+
+/* Remove default image scaling to 100% width */
+.columns.columns11 img {
+  width: 40px;
+  height: 40px;
+  max-width: 40px;
+  max-height: 40px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 12px;
+}
+
+/* Responsive stacking for mobile */
+@media (width <= 900px) {
+  .columns.columns11 > div > div {
+    min-height: 80px;
+    padding-top: 0;
   }
 }
