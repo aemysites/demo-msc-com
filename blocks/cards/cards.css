@@ -784,7 +784,6 @@
   height: 100%;
 }
 
-/* Card image area: ensure visibility and aspect */
 .cards.cards16 .cards-card-image {
   width: 100%;
   aspect-ratio: 16/9;
@@ -792,7 +791,7 @@
   display: flex;
   align-items: stretch;
   justify-content: stretch;
-  background: #ededed; /* fallback if image fails */
+  background: #ededed;
   min-height: 140px;
 }
 
@@ -805,7 +804,6 @@
   position: relative;
 }
 
-/* Stack card body elements tightly under image */
 .cards.cards16 .cards-card-body {
   display: flex;
   flex-direction: column;
@@ -821,7 +819,6 @@
   margin: 0 0 2px;
 }
 
-/* Date styling */
 .cards.cards16 .cards-card-body p:first-child {
   font-size: 0.82rem;
   color: #888;
@@ -829,7 +826,6 @@
   letter-spacing: 0.02em;
 }
 
-/* Title styling */
 .cards.cards16 .cards-card-body strong {
   font-size: 1rem;
   color: #000;
@@ -839,7 +835,6 @@
   display: block;
 }
 
-/* Read more link styling */
 .cards.cards16 .cards-card-body .button-container {
   display: flex;
   flex-direction: row;
@@ -866,7 +861,6 @@
   text-align: left;
 }
 
-/* Gold circle icon for 'Read more' link */
 .cards.cards16 .cards-card-body .button-container .button::after {
   display: inline-block;
   width: 18px;
@@ -877,7 +871,6 @@
   vertical-align: middle;
 }
 
-/* Hover styling for Read more */
 .cards.cards16 .cards-card-body .button-container .button:hover,
 .cards.cards16 .cards-card-body .button-container .button:focus {
   color: #C8A74E;
@@ -885,6 +878,103 @@
   text-decoration: underline;
 }
 
-/* Remove excess spacing below card body */
 
-/* Ensure cards fill the grid cells vertically */
+.cards.cardsnoimages30 {
+  max-width: 984px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
+
+.cards.cardsnoimages30 > ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Center the last row with two cards in a grid of 8 items and 3 columns */
+@media (width >= 901px) {
+  .cards.cardsnoimages30 > ul > li:nth-child(7) {
+    grid-column: 2;
+  }
+}
+
+.cards.cardsnoimages30 > ul > li {
+  background: #fff;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+  display: flex;
+  flex-direction: column;
+  min-height: 160px;
+  width: 100%;
+}
+
+@media (width <= 900px) {
+  .cards.cardsnoimages30 {
+    max-width: 648px;
+  }
+
+  .cards.cardsnoimages30 > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width <= 600px) {
+  .cards.cardsnoimages30 {
+    max-width: 400px;
+  }
+
+  .cards.cardsnoimages30 > ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card body vertical stack */
+.cards.cardsnoimages30 .cards-card-body {
+  margin: 0;
+  padding: 28px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Text styling */
+.cards.cardsnoimages30 .cards-card-body p {
+  margin: 0 0 8px;
+  padding: 0;
+}
+
+/* Date line */
+.cards.cardsnoimages30 .cards-card-body p:first-of-type {
+  font-size: 13px;
+  color: #757575;
+  font-weight: 500;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Title line */
+.cards.cardsnoimages30 .cards-card-body p:nth-of-type(2) {
+  font-size: 17px;
+  color: #181818;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+
+/* Subtitle/tag line */
+.cards.cardsnoimages30 .cards-card-body p:last-of-type {
+  font-size: 14px;
+  color: #A0A0A0;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-top: auto;
+}
