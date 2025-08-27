@@ -1063,7 +1063,6 @@
   text-align: left;
 }
 
-/* Column 1: Stack links vertically, left-aligned */
 .columns.columns33 > div > div:first-child ul {
   margin-bottom: 8px;
   overflow-wrap: break-word;
@@ -1104,7 +1103,6 @@
   text-decoration: underline;
 }
 
-/* Columns 2 & 3: Inline links, left-aligned, space between */
 .columns.columns33 > div > div:nth-child(2) ul,
 .columns.columns33 > div > div:nth-child(3) ul:first-of-type {
   display: flex;
@@ -1131,7 +1129,6 @@
   vertical-align: middle;
 }
 
-/* Remove underline from nav links, adjust color */
 .columns.columns33 > div > div:nth-child(2) ul li a,
 .columns.columns33 > div > div:nth-child(3) ul:first-of-type li a {
   color: #444;
@@ -1154,7 +1151,6 @@
   text-decoration: underline;
 }
 
-/* --- Social icons row --- */
 .columns.columns33 > div > div:last-child ul:last-of-type {
   display: flex;
   flex-direction: row;
@@ -1233,5 +1229,194 @@
     grid-template-columns: 1fr;
     gap: 12px;
     padding: 8px 0 4px;
+  }
+}
+
+
+/* Main columns block with strong selector for background and color */
+.columns.columns33.block.columns-3-cols {
+  background-image:
+    linear-gradient(rgb(0 0 0 / 48%), rgb(0 0 0 / 48%)),
+    url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 660px;
+  width: 100%;
+  margin: 0 auto;
+  color: #fff;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.columns.columns33.block.columns-3-cols > div {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 660px;
+  align-items: stretch;
+  justify-content: space-evenly;
+
+  /* allow columns to fill space more evenly */
+}
+
+/* Responsive: stack columns vertically below 900px */
+@media (width <= 900px) {
+  .columns.columns33.block.columns-3-cols > div {
+    flex-direction: column;
+    min-height: unset;
+    max-width: 98vw;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  .columns.columns33.block.columns-3-cols {
+    min-height: unset;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
+/* Individual columns: flex vertical, centered, more max-width for balance */
+.columns.columns33.block.columns-3-cols > div > div {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+  max-width: 380px;
+  width: 100%;
+  padding: 68px 36px;
+  box-sizing: border-box;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (width <= 900px) {
+  .columns.columns33.block.columns-3-cols > div > div {
+    max-width: 98vw;
+    padding: 32px 12px;
+  }
+}
+
+@media (width <= 600px) {
+  .columns.columns33.block.columns-3-cols > div > div {
+    padding: 24px 6px;
+    min-height: unset;
+    max-width: 98vw;
+  }
+}
+
+/* Vertical divider between columns, except last */
+.columns.columns33.block.columns-3-cols > div > div:not(:last-child) {
+  border-right: 1.5px solid rgb(255 255 255 / 28%);
+}
+
+@media (width <= 900px) {
+  .columns.columns33.block.columns-3-cols > div > div:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid rgb(255 255 255 / 18%);
+  }
+}
+
+/* Headings: bolder, bigger, more space below */
+.columns.columns33.block.columns-3-cols > div > div > p {
+  color: #fff;
+  font-family: var(--heading-font-family);
+  font-weight: 800;
+  font-size: 2.1em;
+  margin: 0 0 44px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+/* Lists: larger font, more space between items */
+.columns.columns33.block.columns-3-cols > div > div > ul {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* List items: larger font, white, wrap long content, no overlap */
+.columns.columns33.block.columns-3-cols > div > div > ul > li {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  font-size: 1.18em;
+  font-family: var(--body-font-family);
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+}
+
+/* Links: white, no underline by default, underline only on hover/focus, wrap long links */
+.columns.columns33.block.columns-3-cols > div > div > ul > li > a,
+.columns.columns33.block.columns-3-cols > div > div > ul > li > a:visited {
+  color: #fff;
+  font-size: 1.18em;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  transition: color 0.2s, text-decoration 0.2s;
+  box-sizing: border-box;
+  white-space: normal;
+  border: none;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.columns.columns33.block.columns-3-cols > div > div > ul > li > a:hover,
+.columns.columns33.block.columns-3-cols > div > div > ul > li > a:focus {
+  color: #fff;
+  text-decoration: underline;
+  outline: none;
+  background: none;
+}
+
+/* Remove button styles for .button if present */
+.columns.columns33.block.columns-3-cols a.button,
+.columns.columns33.block.columns-3-cols > div > div > ul > li > a.button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* Remove list styles from all nested ul */
+.columns.columns33.block.columns-3-cols ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Ensure column content remains centered vertically */
+@media (width >= 900px) {
+  .columns.columns33.block.columns-3-cols > div > div {
+    justify-content: center;
   }
 }
