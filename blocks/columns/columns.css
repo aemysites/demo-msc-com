@@ -547,7 +547,6 @@
 
 
 .columns {
-  /* Darker overlay, perfect vertical centering */
   background-image: linear-gradient(rgb(0 0 0 / 68%), rgb(0 0 0 / 68%)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
   background-size: cover;
   background-position: center;
@@ -561,11 +560,6 @@
   height: 100vh;
 }
 
-/* Center inner row grid exactly middle of viewport, tighter and with larger gaps */
-
-/* Each column: narrower, more compact */
-
-/* Headings: larger, spaced further from lists, visually heavy */
 .columns > div > div > p {
   font-family: var(--heading-font-family);
   font-weight: 800;
@@ -577,7 +571,6 @@
   margin-top: 0;
 }
 
-/* Lists: no bullets, compact spacing, last list flush bottom */
 .columns ul {
   list-style: none;
   margin: 0 0 18px;
@@ -593,7 +586,6 @@
   overflow-wrap: break-word;
 }
 
-/* Links: clean, readable, compact, break long URLs nicely */
 .columns a {
   color: #fff;
   text-decoration: underline;
@@ -610,7 +602,6 @@
   outline: none;
 }
 
-/* Responsive stacking: more gap and padding for better separation */
 @media (width <= 900px) {
   .columns {
     min-height: 0;
@@ -647,7 +638,148 @@
   }
 }
 
-/* Remove extra bottom margin for last ul in column */
 .columns > div > div > ul:last-child {
   margin-bottom: 0;
+}
+
+
+.columns.columns23 {
+  background: none;
+  padding: 0;
+  min-height: unset;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.columns.columns23 > div {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  min-height: 440px;
+  box-sizing: border-box;
+  gap: 0;
+  align-items: stretch;
+}
+
+/* Left (text) column improvements */
+.columns.columns23 > div > div:not(.columns-img-col) {
+  background: #eed385;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 50%;
+  padding: 60px 56px; /* More padding for balance */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  text-align: left;
+  font-family: var(--body-font-family);
+  min-height: 440px;
+  height: 100%;
+}
+
+/* Heading styling, no forced line breaks */
+.columns.columns23 h2 {
+  color: #181818;
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 28px;
+  letter-spacing: 0;
+  font-family: var(--heading-font-family);
+  text-align: left;
+}
+
+.columns.columns23 p {
+  color: #1a1a1a;
+  font-size: 1.08rem;
+  font-weight: 400;
+  line-height: 1.8;
+  margin: 0 0 26px;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+/* Button section at bottom of text area */
+.columns.columns23 .button-container {
+  margin-top: 16px;
+}
+
+/* Button styling override */
+.columns.columns23 .button-container .button {
+  background: none;
+  color: #181818;
+  text-transform: uppercase;
+  font-size: 1.01rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  border: none;
+  padding: 10px 26px;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 20px;
+  box-shadow: none;
+  margin: 0;
+  line-height: 1.3;
+  font-family: var(--body-font-family);
+}
+
+/* Right (image) column: ensure full fill and aspect crop */
+.columns.columns23 > div > .columns-img-col {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  background: none;
+  box-sizing: border-box;
+  padding: 0;
+  min-height: 440px;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Make sure the image completely fills the right column */
+.columns.columns23 .columns-img-col picture,
+.columns.columns23 .columns-img-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  border: none;
+  margin: 0;
+  min-height: 340px;
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive: stack columns vertically, image on top */
+@media (width <= 900px) {
+  .columns.columns23 > div {
+    flex-direction: column;
+    max-width: 100%;
+    min-height: 0;
+  }
+
+  .columns.columns23 > div > div:not(.columns-img-col),
+  .columns.columns23 > div > .columns-img-col {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 220px;
+    height: auto;
+    padding: 28px 18px;
+  }
+
+  .columns.columns23 .columns-img-col img {
+    min-height: 180px;
+    height: 220px;
+    object-fit: cover;
+  }
 }
