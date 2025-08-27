@@ -310,8 +310,6 @@
   align-items: flex-start;
   width: 100%;
   position: relative;
-
-  /* Dotted separator: centered, tightly grouped under columns, not too wide */
   background:
     repeating-linear-gradient(
       to right,
@@ -338,8 +336,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
-  /* Tighter vertical grouping for icon/text/dots */
   padding: 18px 12px 0;
   box-sizing: border-box;
   min-height: 120px;
@@ -378,5 +374,165 @@
 
   .columns.columns14 > div > div p {
     margin-top: 8px;
+  }
+}
+
+
+.columns.columns17 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 340px;
+  gap: 0;
+}
+
+/* Responsive: stack columns vertically on small screens */
+@media (width <= 900px) {
+  .columns.columns17 {
+    flex-direction: column;
+    min-height: unset;
+  }
+}
+
+/* === LEFT COLUMN === */
+.columns.columns17 > div:first-child {
+  background-color: #EDD287;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 48px 40px;
+  min-width: 0;
+  min-height: 340px;
+  box-sizing: border-box;
+}
+
+/* Center the content vertically and horizontally in the left column */
+.columns.columns17 > div:first-child > div:first-child {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Hide left column's image block */
+.columns.columns17 > div:first-child > div:last-child {
+  display: none;
+}
+
+@media (width <= 900px) {
+  .columns.columns17 > div:first-child {
+    padding: 32px 16px;
+    min-height: unset;
+  }
+}
+
+/* Heading styles */
+.columns.columns17 > div:first-child h2 {
+  color: #222;
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin: 0 0 20px;
+  line-height: 1.15;
+}
+
+/* Supporting text styles */
+.columns.columns17 > div:first-child p:not(.button-container) {
+  color: #555;
+  font-size: 1rem;
+  margin: 0 0 24px;
+  line-height: 1.6;
+  max-width: 420px;
+}
+
+/* Button styles in left column */
+.columns.columns17 > div:first-child .button-container {
+  margin: 16px 0 0;
+}
+
+.columns.columns17 > div:first-child .button {
+  background: none;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  letter-spacing: 1px;
+  display: inline-block;
+  transition: color 0.2s;
+}
+
+/* === RIGHT COLUMN === */
+.columns.columns17 > div:last-child {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 340px;
+  box-sizing: border-box;
+  padding: 0;
+  justify-content: center;
+  align-items: stretch;
+}
+
+/* Hide right column's text block */
+.columns.columns17 > div:last-child > div:first-child {
+  display: none;
+}
+
+/* Make image area fill full column */
+.columns.columns17 > div:last-child > div:last-child {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  height: 100%;
+  width: 100%;
+}
+
+/* Stretch the image's parent <p> to fill available space */
+.columns.columns17 > div:last-child > div:last-child > p {
+  flex: 1 1 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Make image fill its parent fully */
+.columns.columns17 > div:last-child img {
+  flex: 1 1 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border: none;
+  box-shadow: none;
+  background: none;
+  min-height: 340px;
+  max-width: unset;
+  max-height: unset;
+}
+
+/* Responsive: Remove min-heights for stacking on mobile */
+@media (width <= 900px) {
+  .columns.columns17 > div:first-child,
+  .columns.columns17 > div:last-child {
+    min-height: unset;
+    padding: 32px 0;
+  }
+
+  .columns.columns17 > div:last-child img {
+    min-height: 180px;
   }
 }
