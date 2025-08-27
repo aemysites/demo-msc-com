@@ -793,8 +793,6 @@
   color: #222;
 }
 
-/* Remove pill effect from the whole button group */
-
 @media (width <= 900px) {
   .hero.hero39 {
     min-height: 350px;
@@ -825,5 +823,135 @@
     min-height: 40px;
     padding: 0 16px;
     font-size: 1rem;
+  }
+}
+
+
+.hero.hero41 {
+  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 320px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Hide the image element as background is used */
+.hero.hero41 > div:first-child img {
+  display: none;
+}
+
+.hero.hero41 > div {
+  display: block;
+  width: 100%;
+  max-width: unset;
+  padding: 0;
+  margin: 0;
+}
+
+/* Right content block: push extremely close to right/top, tight width */
+.hero.hero41 > div:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  max-width: 250px;
+  margin-top: 4px;
+  margin-right: 12px;
+  width: 100%;
+  z-index: 2;
+}
+
+/* Heading adjustments */
+.hero.hero41 h2 {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 2px;
+  line-height: 1.12;
+  text-align: right;
+  letter-spacing: -0.01em;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+/* Accent line below heading: very short and minimal gap */
+.hero.hero41 h2::after {
+  display: block;
+  width: 18px;
+  height: 4px;
+  background: #efd87b;
+  border-radius: 2px;
+  margin: -2px 0 2px auto;
+}
+
+/* Button container: keep button tight under accent line, right-aligned */
+.hero.hero41 .button-container {
+  margin-top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Button: outlined style and spacing */
+.hero-container > .hero-wrapper > .block.hero.hero41 .button {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid #fff;
+  border-radius: 30px;
+  padding: 8px 28px;
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  margin: 0;
+  box-shadow: none;
+}
+
+/* Button hover/focus */
+.hero-container > .hero-wrapper > .block.hero.hero41 .button:hover,
+.hero-container > .hero-wrapper > .block.hero.hero41 .button:focus {
+  background: rgb(255 255 255 / 8%);
+  color: #fff;
+}
+
+/* Responsive: stack and center on small screens */
+@media (width <= 900px) {
+  .hero.hero41 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 420px;
+    padding: 0 0 32px;
+  }
+
+  .hero.hero41 > div:last-child {
+    align-items: center;
+    margin-right: 0;
+    margin-top: 20vw;
+    max-width: 92vw;
+  }
+
+  .hero.hero41 h2 {
+    text-align: center;
+    font-size: 1.35rem;
+    padding-bottom: 8px;
+  }
+
+  .hero.hero41 h2::after {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 8px;
+    width: 14px;
+  }
+
+  .hero.hero41 .button-container {
+    justify-content: center;
   }
 }
