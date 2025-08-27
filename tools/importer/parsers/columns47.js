@@ -1,69 +1,71 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Header must match exactly as required
+  // Header row for the block
   const headerRow = ['Columns (columns47)'];
 
-  // Locate the main .grid-container and .cell
+  // Find the grid container that holds columns
   const gridContainer = element.querySelector('.grid-container');
-  let rowCells = [];
+  if (!gridContainer) return;
+  const cell = gridContainer.querySelector('.cell');
+  if (!cell) return;
 
-  if (gridContainer) {
-    const cell = gridContainer.querySelector('.cell');
-    if (cell) {
-      // Find all direct children .msc-image-and-content__content
-      const contentBlocks = Array.from(cell.querySelectorAll('.msc-image-and-content__content'));
-      // Find the first .msc-image-and-content__image outside of a <template>
-      // and the first .msc-image-and-content__info
-      let imageCell = null;
-      let infoCell = null;
-      for (const content of contentBlocks) {
-        if (!imageCell) {
-          const imgDiv = content.querySelector('.msc-image-and-content__image');
-          if (imgDiv && imgDiv.querySelector('img')) {
-            imageCell = imgDiv;
-          }
-        }
-        if (!infoCell) {
-          const infoDiv = content.querySelector('.msc-image-and-content__info');
-          if (infoDiv) {
-            infoCell = infoDiv;
-          }
-        }
-      }
-      // Fallback if infoCell not found, try to get heading/description/link (mobile layout)
-      if (!infoCell && contentBlocks.length) {
-        // Find in the first contentBlock
-        const content = contentBlocks[0];
-        const infoParts = [];
-        const heading = content.querySelector('.msc-section-title');
-        if (heading) infoParts.push(heading);
-        const desc = content.querySelector('.msc-section-description');
-        if (desc) infoParts.push(desc);
-        // Sometimes description is direct .msc-section-description, sometimes inside .text-container
-        const button = content.querySelector('a.msc-cta');
-        if (button) infoParts.push(button);
-        if (infoParts.length) {
-          infoCell = document.createElement('div');
-          infoParts.forEach(part => infoCell.appendChild(part));
-        }
-      }
-      // Both columns found, add as one row with 2 cells
-      if (imageCell && infoCell) {
-        rowCells = [imageCell, infoCell];
-      } else if (imageCell) {
-        rowCells = [imageCell];
-      } else if (infoCell) {
-        rowCells = [infoCell];
+  // Find all .msc-image-and-content__content elements that are direct children and not inside <template>
+  let mainContent = null;
+  const directChildren = Array.from(cell.children);
+  for (const child of directChildren) {
+    if (child.classList && child.classList.contains('msc-image-and-content__content') && !child.closest('template')) {
+      mainContent = child;
+      break;
+    }
+  }
+  // Fallback: pick the first .msc-image-and-content__content not in <template>
+  if (!mainContent) {
+    const allContents = cell.querySelectorAll('.msc-image-and-content__content');
+    for (const c of allContents) {
+      if (!c.closest('template')) {
+        mainContent = c;
+        break;
       }
     }
   }
+  if (!mainContent) return;
 
-  // Fallback: place whole element if we couldn't find columns
-  if (rowCells.length === 0) {
-    rowCells = [element];
+  // Now, extract left column (image) and right column (info)
+  // Left column: find first .msc-image-and-content__image with <img>
+  let leftCell = '';
+  const images = mainContent.querySelectorAll('.msc-image-and-content__image');
+  for (const imgDiv of images) {
+    const img = imgDiv.querySelector('img');
+    if (img) {
+      leftCell = img;
+      break;
+    }
   }
 
-  const cells = [headerRow, rowCells];
+  // Right column: the .msc-image-and-content__info div
+  let rightCell = '';
+  const info = mainContent.querySelector('.msc-image-and-content__info');
+  if (info) {
+    rightCell = info;
+  } else {
+    // Fallback: mobile layout - gather heading, description, and button
+    const frag = document.createElement('div');
+    const h3 = mainContent.querySelector('h3');
+    if (h3) frag.appendChild(h3);
+    const desc = mainContent.querySelector('.msc-section-description');
+    if (desc) frag.appendChild(desc);
+    const btn = mainContent.querySelector('.msc-cta');
+    if (btn) frag.appendChild(btn);
+    rightCell = frag;
+  }
+
+  // Build cells for the block table
+  const cells = [
+    headerRow,
+    [leftCell, rightCell]
+  ];
+
+  // Create and replace
   const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }

@@ -1,35 +1,36 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Ensure we process only the correct block
-  const slideRoot = element.querySelector('.msc-slider__slide');
-  if (!slideRoot) return;
+  // Find the slick-slider block
+  const slickSlider = element.querySelector('.msc-slider__slick-slider');
+  if (!slickSlider) return;
 
-  // Find two main columns: image and content
-  const imageCol = slideRoot.querySelector('.msc-slider__image, .msc-image-banner__image');
-  const contentCol = slideRoot.querySelector('.msc-image-banner__content, .msc-slider__content');
+  // Find the current slide
+  const slide = slickSlider.querySelector('.msc-slider__slide');
+  if (!slide) return;
 
-  // Image column: use the desktop image if present, else the first image
-  let imgEl = null;
-  if (imageCol) {
-    imgEl = imageCol.querySelector('img.desktop') || imageCol.querySelector('img');
-    if (imgEl && !imgEl.src && imgEl.dataset && imgEl.dataset.src) {
-      imgEl.src = imgEl.dataset.src;
+  // Get the content column
+  const contentCell = slide.querySelector('.msc-image-banner__content, .msc-slider__content');
+  if (contentCell) {
+    Array.from(contentCell.querySelectorAll('script, style')).forEach(el => el.remove());
+  }
+
+  // Get the image column (prefer desktop image)
+  let imgCell = null;
+  const imgWrapper = slide.querySelector('.msc-slider__image, .msc-image-banner__image');
+  if (imgWrapper) {
+    imgCell = imgWrapper.querySelector('img.desktop[src]');
+    if (!imgCell) {
+      imgCell = imgWrapper.querySelector('img.mobile[data-src], img.mobile[src], img');
     }
   }
 
-  // Content column: preserve full structure and reference the actual element
-  // Instead of cloning, just reference the existing contentCol element
-  // (reference is more resilient and matches requirements)
-  // If contentCol is missing, fall back to an empty div
-  const contentCell = contentCol || document.createElement('div');
+  // Ensure the header row is a single-cell array
+  const headerRow = ['Columns (columns23)'];
+  // The content row may have two cells (columns)
+  const contentRow = [contentCell, imgCell];
+  const cells = [headerRow, contentRow];
 
-  // Table setup from spec: header then row with two columns
-  const cells = [
-    ['Columns (columns23)'],
-    [contentCell, imgEl].filter(Boolean),
-  ];
-
-  // Create and replace
+  // Build the table and replace
   const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }

@@ -1,61 +1,43 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Header row as in the example
+  // Cards block header
   const headerRow = ['Cards (cardsNoImages26)'];
-
-  // Find the slider structure (defensive: handle where selectors might be missing)
-  const slider = element.querySelector('.msc-slider__slider');
-  if (!slider) return;
-  const slickList = slider.querySelector('.slick-list');
-  if (!slickList) return;
-  const slickTrack = slickList.querySelector('.slick-track');
-  if (!slickTrack) return;
-  const slides = slickTrack.querySelectorAll('.slick-slide');
-
   const rows = [headerRow];
 
+  // Find the slider track containing the slides
+  const track = element.querySelector('.slick-track');
+  if (!track) return;
+
+  // Each .slick-slide contains a card
+  const slides = track.querySelectorAll('.slick-slide');
   slides.forEach((slide) => {
-    // Each slide may be hidden, but we want all for completeness (as in screenshots)
-    // Get the .msc-slider__slide inside this .slick-slide
-    const slideWrap = slide.querySelector('.msc-slider__slide');
-    if (!slideWrap) return;
-    const slideLink = slideWrap.querySelector('a');
-    if (!slideLink) return;
-    const dateP = slideLink.querySelector('.msc-slider__slide-date');
-    const titleP = slideLink.querySelector('.msc-slider__slide-title');
-    const categoryP = slideLink.querySelector('.msc-slider__slide-category');
+    const slideContent = slide.querySelector('.msc-slider__slide');
+    if (!slideContent) return;
+    const link = slideContent.querySelector('a');
+    if (!link) return;
 
-    // Build the card content, referencing existing nodes when possible
-    // Use <strong> for title as visually bold, but keep link semantics and reference source node's text
-    const frag = document.createDocumentFragment();
+    // Prepare card content as a fragment
+    const cardParts = [];
+    // Extract date, title, category as actual elements
+    const date = link.querySelector('.msc-slider__slide-date');
+    if (date) cardParts.push(date);
+    const title = link.querySelector('.msc-slider__slide-title');
+    if (title) cardParts.push(title);
+    const category = link.querySelector('.msc-slider__slide-category');
+    if (category) cardParts.push(category);
 
-    if (dateP) {
-      // Reference the existing <p> element directly (preserves original styling/structure)
-      frag.appendChild(dateP);
-    }
-
-    if (titleP) {
-      // Create a <div> with the title text as a link
-      const titleDiv = document.createElement('div');
-      const titleLink = document.createElement('a');
-      titleLink.href = slideLink.getAttribute('href') || '#';
-      // Use <strong> for semantic emphasis as in example
-      const strong = document.createElement('strong');
-      strong.textContent = titleP.textContent;
-      titleLink.appendChild(strong);
-      titleDiv.appendChild(titleLink);
-      frag.appendChild(titleDiv);
-    }
-
-    if (categoryP) {
-      // Reference the existing <p> element directly
-      frag.appendChild(categoryP);
-    }
-
-    rows.push([frag]);
+    // Reference the existing <a> element, but clean up its children so only the three parts are present
+    // Remove any extraneous content
+    Array.from(link.childNodes).forEach((child) => {
+      if (!cardParts.includes(child)) link.removeChild(child);
+    });
+    cardParts.forEach((part) => {
+      if (!link.contains(part)) link.appendChild(part);
+    });
+    rows.push([link]); // One card per row
   });
 
-  // Create and replace block
+  // Create table and replace element
   const table = WebImporter.DOMUtils.createTable(rows, document);
   element.replaceWith(table);
 }

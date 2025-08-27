@@ -1,76 +1,61 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper: get the best image from a banner
-  function getBannerImage(bannerLink) {
-    const imageDiv = bannerLink.querySelector('.msc-image-banner__image');
-    if (!imageDiv) return null;
-    // Prefer desktop image with src
-    let img = imageDiv.querySelector('img.desktop[src]');
+  // Header row (exact match)
+  const headerRow = ['Hero (hero3)'];
+
+  // Find the main grid container and cell
+  const gridContainer = element.querySelector('.grid-container');
+  if (!gridContainer) return;
+  const cell = gridContainer.querySelector('.cell');
+  if (!cell) return;
+
+  // --- Row 2: Background image ---
+  // Reference the desktop image if present, otherwise fallback to any image
+  let bgImg = null;
+  const imgContainer = cell.querySelector('.msc-image-banner__image');
+  if (imgContainer) {
+    // Prefer desktop image
+    let img = imgContainer.querySelector('img.desktop');
     if (!img) {
-      img = imageDiv.querySelector('img.mobile[src]');
+      // fallback to first img within the container
+      img = imgContainer.querySelector('img');
     }
-    if (!img) {
-      img = imageDiv.querySelector('img');
+    if (img && (img.src || img.getAttribute('data-src'))) {
+      // Reference existing image element directly
+      bgImg = img;
     }
-    return img || null;
   }
 
-  // Helper: get heading, description from banner
-  function getBannerContent(bannerLink) {
-    const contentDiv = bannerLink.querySelector('.msc-image-banner__content');
-    if (!contentDiv) return [];
-    const sections = [];
-    // Heading
-    const heading = contentDiv.querySelector('h1, h2, h3, h4, h5, h6');
-    if (heading) sections.push(heading);
-    // Description
-    const description = contentDiv.querySelector('.msc-section-description, p');
-    if (description) sections.push(description);
-    return sections;
+  // --- Row 3: Content (title, description, CTA) ---
+  const contentElements = [];
+  const contentBox = cell.querySelector('.msc-image-banner__content');
+  if (contentBox) {
+    // Reference heading directly
+    const heading = contentBox.querySelector('.msc-section-title');
+    if (heading) contentElements.push(heading);
+    // Reference description directly
+    const desc = contentBox.querySelector('.msc-section-description');
+    if (desc) contentElements.push(desc);
+  }
+  // Reference CTA if present
+  const ctaBox = cell.querySelector('.msc-image-banner__cta');
+  if (ctaBox) {
+    const ctaLink = ctaBox.querySelector('a');
+    if (ctaLink) contentElements.push(ctaLink);
   }
 
-  // Helper: get CTA link from the main cell
-  function getBannerCTA(mainCell) {
-    const ctaDiv = mainCell.querySelector('.msc-image-banner__cta');
-    if (ctaDiv) {
-      const link = ctaDiv.querySelector('a');
-      if (link) return link;
-    }
-    return null;
-  }
+  // Ensure at least an empty string if nothing found
+  const imageRow = [bgImg ? bgImg : ''];
+  const contentRow = [contentElements.length ? contentElements : ''];
 
-  // Find the main cell containing the banner
-  const mainCell = element.querySelector('.cell.position-relative');
-  if (!mainCell) return;
-
-  // Find the banner link that wraps the image & content
-  const bannerLink = mainCell.querySelector('.msc-image-banner__link');
-  if (!bannerLink) return;
-
-  // Extract image
-  const img = getBannerImage(bannerLink);
-
-  // Extract heading/content
-  const contentArr = getBannerContent(bannerLink);
-
-  // Extract CTA
-  const cta = getBannerCTA(mainCell);
-
-  // Compose row 3 content
-  const row3Content = [];
-  if (contentArr.length) row3Content.push(...contentArr);
-  if (cta) row3Content.push(cta);
-
-  // Table header exactly as example
-  const cells = [
-    ['Hero (hero3)'],
-    [img ? img : ''],
-    [row3Content.length ? row3Content : ''],
+  // Build the table, exactly as example (1 column, 3 rows)
+  const rows = [
+    headerRow,
+    imageRow,
+    contentRow
   ];
+  const block = WebImporter.DOMUtils.createTable(rows, document);
 
-  // Create block table
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-
-  // Replace original element
+  // Replace the element with the block table
   element.replaceWith(block);
 }

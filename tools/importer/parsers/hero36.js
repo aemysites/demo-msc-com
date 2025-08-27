@@ -1,26 +1,59 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Header row matches the example exactly
-  const headerRow = ['Hero (hero36)'];
+  // Header row (block name, as required by the spec)
+  const cells = [['Hero (hero36)']];
 
-  // Image row: no background image in this HTML
-  const imageRow = [''];
+  // Background image row (not present in the provided HTML)
+  cells.push(['']);
 
-  // Content row: must include ALL visible text/content for semantic meaning
-  // The form contains: heading, input, button, and error spans
+  // Content row: capture all visible text and semantic structure
+  // The only content is inside the form element in the HTML
   const form = element.querySelector('form');
-  let contentCell;
+  let contentParts = [];
   if (form) {
-    // We want to preserve semantic structure, so we'll reference all form children as they are
-    // That way, heading and button are retained, and any visible text is captured
-    const children = Array.from(form.children);
-    contentCell = children.length > 0 ? children : [''];
+    // 1. Heading (title)
+    const heading = form.querySelector('.msc-newsletter-subscription__title, h1, h2, h3, h4, h5, h6');
+    if (heading) contentParts.push(heading);
+    // 2. Input placeholder as paragraph
+    const input = form.querySelector('input[type="email"]');
+    if (input && input.placeholder) {
+      const placeholderP = document.createElement('p');
+      placeholderP.textContent = input.placeholder;
+      contentParts.push(placeholderP);
+    }
+    // 3. Call to action button as link with redirect URL
+    const button = form.querySelector('button');
+    if (button) {
+      const href = element.getAttribute('data-redirect-url') || '#';
+      const link = document.createElement('a');
+      link.href = href;
+      link.textContent = button.textContent.trim();
+      contentParts.push(link);
+    }
   } else {
-    contentCell = [''];
+    // Fallback: get all text and interactive elements at top level
+    const heading = element.querySelector('h1, h2, h3, h4, h5, h6');
+    if (heading) contentParts.push(heading);
+    const input = element.querySelector('input[type="email"]');
+    if (input && input.placeholder) {
+      const placeholderP = document.createElement('p');
+      placeholderP.textContent = input.placeholder;
+      contentParts.push(placeholderP);
+    }
+    const button = element.querySelector('button');
+    if (button) {
+      const href = element.getAttribute('data-redirect-url') || '#';
+      const link = document.createElement('a');
+      link.href = href;
+      link.textContent = button.textContent.trim();
+      contentParts.push(link);
+    }
   }
 
-  // Compose cells array, matching the example: 1 column, 3 rows
-  const cells = [headerRow, imageRow, [contentCell]];
+  // Add all referenced elements in a single cell (single column)
+  cells.push([contentParts]);
+
+  // Create the table and replace the original element
   const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }

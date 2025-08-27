@@ -1,38 +1,47 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Compose the header row exactly as in the example
+  // Table header row: block name, exactly as in the example
   const headerRow = ['Hero (hero35)'];
 
-  // Background image row (none found in the provided HTML)
-  const backgroundRow = [''];
+  // Second row: background image (none in this HTML)
+  const imageRow = [''];
 
-  // Find the info-content area (content block)
-  const infoContent = element.querySelector('.msc-file-banner__info-content');
+  // Third row: all textual and interactive content from the block
+  // Find the content container
+  let infoContent = element.querySelector('.msc-file-banner__info-content');
+  let content = [];
 
-  // Defensive: If infoContent is missing, fall back to empty cell
-  let contentCell;
   if (infoContent) {
-    // Title (h3)
-    const title = infoContent.querySelector('.title');
-    // Dropdown group (select and download button)
-    const dropdownGroup = infoContent.querySelector('.msc-form-group');
-    // Compose array of present elements only, in correct order
-    const cellContent = [];
-    if (title) cellContent.push(title);
-    if (dropdownGroup) cellContent.push(dropdownGroup);
-    contentCell = cellContent.length ? cellContent : [''];
-  } else {
-    contentCell = [''];
+    // Include all children in order (headings, paragraphs, dropdown/buttons, etc)
+    for (const child of infoContent.children) {
+      // If this is the previous/download area, include all its children (dropdown, buttons, etc)
+      if (child.classList.contains('msc-file-banner__previous')) {
+        for (const prevChild of child.children) {
+          content.push(prevChild);
+        }
+      } else {
+        content.push(child);
+      }
+    }
   }
 
-  // Compose the table rows array
-  const rows = [
-    headerRow,
-    backgroundRow,
-    [contentCell],
-  ];
+  // If somehow nothing was found, fallback to all children
+  if (content.length === 0) {
+    for (const child of element.children) {
+      content.push(child);
+    }
+  }
 
-  // Create and replace block table
-  const block = WebImporter.DOMUtils.createTable(rows, document);
+  // Only add empty string if content really is empty
+  const contentRow = [content.length ? content : ''];
+
+  // Compose the table
+  const cells = [
+    headerRow,
+    imageRow,
+    contentRow,
+  ];
+  
+  const block = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(block);
 }

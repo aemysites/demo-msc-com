@@ -1,61 +1,50 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper: get the first visible image in a card
-  function getCardImage(card) {
-    const imgs = card.querySelectorAll('img.msc-solution__card-image');
-    // Prefer first non-d-none, fallback to first
-    for (const img of imgs) {
-      if (!img.classList.contains('d-none')) {
-        return img;
-      }
-    }
-    return imgs[0] || null;
-  }
+  const headerRow = ['Cards (cards52)'];
+  const cardContainer = element.querySelector('.msc-solution__container');
+  const cards = cardContainer ? cardContainer.querySelectorAll('.msc-solution__card') : [];
 
-  // Helper: get card text content as array of elements (strong for title, others for desc/link)
-  function getCardTextContent(card) {
-    const result = [];
-    const content = card.querySelector('.msc-solution__card-content');
-    if (!content) return result;
+  const rows = [];
 
-    const titleDiv = content.querySelector('.msc-solution__card-content-title');
-    if (titleDiv && titleDiv.textContent.trim()) {
-      const strong = document.createElement('strong');
-      strong.textContent = titleDiv.textContent.trim();
-      result.push(strong);
-    }
-
-    const textDiv = content.querySelector('.msc-solution__card-content-text');
-    if (textDiv) {
-      // Description(s)
-      textDiv.querySelectorAll('p').forEach(p => {
-        if (p.textContent && p.textContent.trim()) {
-          result.push(p);
-        }
-      });
-      // CTA link
-      const link = textDiv.querySelector('a');
-      if (link) {
-        result.push(link);
-      }
-    }
-    return result;
-  }
-
-  // Find cards
-  const cards = element.querySelectorAll('.msc-solution__card');
-  const rows = [['Cards (cards52)']];
   cards.forEach(card => {
-    // image cell
-    const img = getCardImage(card);
-    // text/desc cell
-    const textEls = getCardTextContent(card);
-    rows.push([
-      img || '',
-      textEls.length === 1 ? textEls[0] : textEls
-    ]);
+    // Image: first .msc-solution__card-image that's not .d-none, fallback to first if needed
+    let img = card.querySelector('img.msc-solution__card-image:not(.d-none)');
+    if (!img) {
+      img = card.querySelector('img.msc-solution__card-image');
+    }
+    // Reference the existing img element
+    // Content
+    const content = card.querySelector('.msc-solution__card-content');
+    // Title
+    const titleEl = content ? content.querySelector('.msc-solution__card-content-title') : null;
+    // Description and link
+    const textEl = content ? content.querySelector('.msc-solution__card-content-text') : null;
+
+    // Build the content cell
+    const parts = [];
+    if (titleEl && titleEl.textContent.trim()) {
+      const strong = document.createElement('strong');
+      strong.textContent = titleEl.textContent.trim();
+      parts.push(strong);
+    }
+    if (textEl) {
+      const p = textEl.querySelector('p');
+      if (p && p.textContent.trim()) {
+        parts.push(document.createElement('br'));
+        parts.push(p);
+      }
+      const link = textEl.querySelector('a');
+      if (link) {
+        parts.push(document.createElement('br'));
+        parts.push(link);
+      }
+    }
+    // If no title or description, add empty string for robustness
+    if (parts.length === 0) parts.push('');
+    rows.push([img, parts]);
   });
 
-  const table = WebImporter.DOMUtils.createTable(rows, document);
+  const cells = [headerRow, ...rows];
+  const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }

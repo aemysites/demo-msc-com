@@ -1,55 +1,49 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Block header row as in the example
+  // Block header row
   const headerRow = ['Cards (cards37)'];
+  const rows = [headerRow];
 
-  // Find the slider container
+  // Find the slider block that contains the slides
   const slider = element.querySelector('.msc-slider__slick-slider');
   if (!slider) return;
 
-  // All direct slick-slide wrappers
-  const slideWrappers = slider.querySelectorAll('.slick-slide');
-
-  // Table rows: start with the header
-  const rows = [headerRow];
-
-  slideWrappers.forEach((slideWrapper) => {
-    // Defensive: inner structure is: <div><div class="msc-slider__slide"> ... </div></div>
-    const slide = slideWrapper.querySelector(':scope > div > .msc-slider__slide');
-    if (!slide) return;
-
-    // First cell: the image (mandatory)
+  // Find all cards/slides (each contains image, title, CTA)
+  const slideDivs = slider.querySelectorAll('.msc-slider__slide');
+  slideDivs.forEach((slide) => {
+    // First cell: the image
     const img = slide.querySelector('img');
-    // Defensive: skip card if no image
-    if (!img) return;
+    let imgElem = null;
+    if (img) {
+      imgElem = img;
+    }
 
-    // Second cell: text content
-    const contentDiv = slide.querySelector('.msc-slider__slide-content');
+    // Second cell: Title, CTA link (no description text in this HTML)
+    const content = slide.querySelector('.msc-slider__slide-content');
     const cellContent = [];
-    if (contentDiv) {
-      // Title (span), as <strong>
-      const titleSpan = contentDiv.querySelector('.msc-slider__slide-title');
-      if (titleSpan && titleSpan.textContent.trim()) {
-        // Use a <strong> as in the requirements
+    if (content) {
+      // Title: always bold (strong)
+      const title = content.querySelector('.msc-slider__slide-title');
+      if (title) {
         const strong = document.createElement('strong');
-        strong.textContent = titleSpan.textContent.trim();
+        strong.textContent = title.textContent.trim();
         cellContent.push(strong);
       }
-      // CTA/link (optional)
-      const cta = contentDiv.querySelector('a');
-      if (cta) {
-        if (cellContent.length) cellContent.push(document.createElement('br'));
-        cellContent.push(cta);
+      // CTA link (placed below title)
+      const link = content.querySelector('a');
+      if (link) {
+        // Add a <br> if there's a title and a link to visually separate them
+        if (cellContent.length > 0) {
+          cellContent.push(document.createElement('br'));
+        }
+        cellContent.push(link);
       }
     }
-    // If cellContent is empty, use blank
-    rows.push([
-      img,
-      cellContent.length === 1 ? cellContent[0] : cellContent.length ? cellContent : ''
-    ]);
+    // Use array for second cell if there are multiple elements; else, use single element
+    rows.push([imgElem, cellContent.length === 1 ? cellContent[0] : cellContent]);
   });
 
-  // Create the table and replace the original element
+  // Create the block table
   const table = WebImporter.DOMUtils.createTable(rows, document);
   element.replaceWith(table);
 }

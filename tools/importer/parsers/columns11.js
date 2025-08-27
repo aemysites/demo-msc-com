@@ -1,25 +1,28 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the icons list
-  const iconsList = element.querySelector('ul.msc-icon-stats__list-icons');
-  if (!iconsList) return;
-  // Get all <li> elements that are not separators
-  const iconItems = Array.from(iconsList.children).filter(li => !li.classList.contains('dots-separator'));
-  if (iconItems.length === 0) return;
-  // Each cell is the content in the icon + text for that column
-  const rowCells = iconItems.map(li => {
-    const cellContent = [];
-    // Direct children of <li> are the icon span and the text p
-    for (let child of li.children) {
-      cellContent.push(child);
-    }
-    return cellContent;
+  // Find the UL with the icons
+  const ul = element.querySelector('.msc-icon-stats__list-icons');
+  if (!ul) return;
+
+  // Get all LI elements that are not separators
+  const lis = Array.from(ul.children).filter(li => !li.classList.contains('dots-separator'));
+
+  // For each li, create a cell containing both the icon and the text, stacked vertically
+  const cellsRow = lis.map((li) => {
+    const iconSpan = li.querySelector('.msc-icon-stats__list-icon');
+    const textPara = li.querySelector('.msc-icon-stats__text');
+    const div = document.createElement('div');
+    if (iconSpan) div.appendChild(iconSpan);
+    if (textPara) div.appendChild(textPara);
+    return div;
   });
-  // Compose the table
-  const cells = [
+
+  // The header row must contain exactly one cell (block name), even if there are multiple columns in the content row
+  const tableRows = [
     ['Columns (columns11)'],
-    rowCells
+    cellsRow
   ];
-  const table = WebImporter.DOMUtils.createTable(cells, document);
+
+  const table = WebImporter.DOMUtils.createTable(tableRows, document);
   element.replaceWith(table);
 }

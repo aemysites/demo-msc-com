@@ -1,30 +1,32 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Table header as per requirement
+  // Header row exactly as specified
   const headerRow = ['Cards (cards57)'];
+  const rows = [headerRow];
 
-  // Find all card nodes
-  const cardNodes = element.querySelectorAll('.msc-press-room-nav-elements__card');
-  const rows = [];
+  // Get all card elements (each .cell inside .grid-x)
+  const gridX = element.querySelector('.grid-x');
+  if (!gridX) return;
+  const cards = gridX.querySelectorAll(':scope > .cell');
 
-  cardNodes.forEach(card => {
-    // Card image (mandatory)
-    const imageContainer = card.querySelector('.msc-press-room-nav-elements__card-image');
-    let imageEl = imageContainer && imageContainer.querySelector('img');
-    
-    // Card content (mandatory)
-    // Use the existing content block as is to preserve formatting
+  cards.forEach(card => {
+    // Card image (img inside card image container)
+    let img = null;
+    const imgContainer = card.querySelector('.msc-press-room-nav-elements__card-image');
+    if (imgContainer) img = imgContainer.querySelector('img');
+
+    // Card text (all block content from card content container)
+    let textBlock = null;
     const contentContainer = card.querySelector('.msc-press-room-nav-elements__card-content');
-    let textEl = contentContainer;
+    if (contentContainer) textBlock = contentContainer;
 
-    // Fallbacks for robustness (if element missing, use empty string)
-    if (!imageEl) imageEl = '';
-    if (!textEl) textEl = '';
-
-    rows.push([imageEl, textEl]);
+    // Only include row if both img and textBlock have some content
+    if (img || textBlock) {
+      rows.push([img, textBlock]);
+    }
   });
 
-  const tableArr = [headerRow, ...rows];
-  const block = WebImporter.DOMUtils.createTable(tableArr, document);
-  element.replaceWith(block);
+  // Create and replace with block table
+  const table = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(table);
 }

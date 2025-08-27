@@ -1,51 +1,48 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Compose the header row
+  // Table header as per requirement
   const headerRow = ['Hero (hero42)'];
 
   // --- IMAGE ROW ---
-  // Find the image container within the banner
-  let imageElem = null;
-  const imgBannerImageDiv = element.querySelector('.msc-image-banner__image');
-  if (imgBannerImageDiv) {
-    // If there's a desktop image with src, use it. Else, fallback to mobile or first image
-    const desktopImg = imgBannerImageDiv.querySelector('img.desktop[src]');
-    if (desktopImg) {
-      imageElem = desktopImg;
-    } else {
-      const mobileImg = imgBannerImageDiv.querySelector('img.mobile');
-      imageElem = mobileImg || imgBannerImageDiv.querySelector('img');
+  // Find the image container
+  const imgContainer = element.querySelector('.msc-image-banner__image');
+  let imageEl = null;
+  if (imgContainer) {
+    // Prefer desktop image with src, else mobile image with data-src
+    imageEl = imgContainer.querySelector('img.desktop[src]');
+    if (!imageEl) {
+      imageEl = imgContainer.querySelector('img.mobile[data-src]');
+      // If found, set .src so image is referenced properly
+      if (imageEl && imageEl.dataset && imageEl.dataset.src) {
+        imageEl.src = imageEl.dataset.src;
+      }
     }
   }
-  const imageRow = [imageElem ? imageElem : ''];
 
   // --- CONTENT ROW ---
-  // Gather headline and CTA
-  const contentParts = [];
+  // Content: Heading and CTA
+  const contentContainer = document.createElement('div');
 
-  // Headline (h2)
-  const titleDiv = element.querySelector('.msc-image-banner__content');
-  if (titleDiv) {
-    const h2 = titleDiv.querySelector('h2');
-    if (h2) contentParts.push(h2);
+  // Heading (h2)
+  const heading = element.querySelector('.msc-image-banner__content h2');
+  if (heading) {
+    contentContainer.appendChild(heading);
   }
 
-  // CTA button (link)
-  const ctaDiv = element.querySelector('.msc-image-banner__cta');
-  if (ctaDiv) {
-    const ctaLink = ctaDiv.querySelector('a');
-    if (ctaLink) contentParts.push(ctaLink);
+  // CTA (if present)
+  const cta = element.querySelector('.msc-image-banner__cta a');
+  if (cta) {
+    contentContainer.appendChild(cta);
   }
 
-  const contentRow = [contentParts.length > 0 ? contentParts : ''];
-
-  // Compose the block table
-  const cells = [
-    headerRow, // Header
-    imageRow,  // Row with background image
-    contentRow // Row with title and CTA
+  // Compose table rows
+  const rows = [
+    headerRow,
+    [imageEl ? imageEl : ''],
+    [contentContainer]
   ];
 
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-  element.replaceWith(block);
+  // Create and replace
+  const table = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(table);
 }

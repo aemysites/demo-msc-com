@@ -1,18 +1,27 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Header row as required by the block example
+  // Header matches the block name exactly per example
   const headerRow = ['Search'];
 
-  // Extract the main search form area: look for the first <form> descendant
-  let mainForm = element.querySelector('form');
-  // If not found, fallback to the element itself
-  if (!mainForm) mainForm = element;
+  // Try to select and reference the full visible content block for maximum flexibility
+  // Usually this is the first .cell inside the structure, but fallback to the element itself
+  let contentDiv = element.querySelector('.cell, form, div');
+  if (!contentDiv) contentDiv = element;
 
-  // Place the existing form (including all text, input, and error messages) in the content row
-  const contentRow = [mainForm];
+  // Per requirements, always add the query index link as the second row content
+  const queryIndexUrl = 'https://main--helix-block-collection--adobe.hlx.live/block-collection/sample-search-data/query-index.json';
+  const link = document.createElement('a');
+  link.href = queryIndexUrl;
+  link.textContent = queryIndexUrl;
+  link.target = '_blank';
 
-  // Assemble the block table
-  const rows = [headerRow, contentRow];
-  const table = WebImporter.DOMUtils.createTable(rows, document);
-  element.replaceWith(table);
+  // Combine all content elements into a single cell as required
+  const cells = [
+    headerRow,
+    [[contentDiv, link]]
+  ];
+
+  // Create and replace
+  const block = WebImporter.DOMUtils.createTable(cells, document);
+  element.replaceWith(block);
 }

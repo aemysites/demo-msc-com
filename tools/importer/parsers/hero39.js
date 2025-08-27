@@ -1,64 +1,54 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // 1. Header row, exact match with example
+  // Header row: must be exact
   const headerRow = ['Hero (hero39)'];
 
-  // 2. Background image row: prefer desktop > mobile > any img
-  let imgEl = null;
-  const imgContainer = element.querySelector('.msc-hero-immersive__image');
-  if (imgContainer) {
-    imgEl = imgContainer.querySelector('img.desktop') || imgContainer.querySelector('img.mobile') || imgContainer.querySelector('img');
+  // --- Image Row ---
+  let imageRow = [''];
+  // Prefer desktop image if available, else any image inside the .msc-hero-immersive__image
+  const imageDiv = element.querySelector('.msc-hero-immersive__image');
+  if (imageDiv) {
+    let img = imageDiv.querySelector('img.desktop') || imageDiv.querySelector('img');
+    if (img) imageRow = [img];
   }
 
-  // 3. Content row: All visible content below the image (headings, subheadings, paragraph, etc)
-  // Find the wrapper that holds the text content
-  // Use .msc-hero-immersive__inner-wrapper. If not found, fallback to main element
-  let contentSource = element.querySelector('.msc-hero-immersive__inner-wrapper') || element;
-  // Gather all direct children with meaningful text (headings, paragraphs, etc)
-  // In this HTML, the actual heading is inside .msc-hero-immersive__title
-  // We'll also grab any other direct children with text
+  // --- Content Row ---
+  // Collect all content relevant to the hero: title, description, CTAs, and quicktool
   const contentItems = [];
-  // Extract all content from .msc-hero-immersive__title (should contain heading, strong, br, etc)
-  const titleBlock = contentSource.querySelector('.msc-hero-immersive__title');
-  if (titleBlock) {
-    Array.from(titleBlock.childNodes).forEach((node) => {
-      if (node.nodeType === 1) {
-        contentItems.push(node);
-      } else if (node.nodeType === 3 && node.textContent.trim()) {
-        const span = document.createElement('span');
-        span.textContent = node.textContent.trim();
-        contentItems.push(span);
-      }
-    });
-  }
 
-  // Look for any extra description or ctas as siblings under the wrapper
-  // We ignore quicktool and overlays, only visually relevant text elements
-  // If any other direct children are a heading, p, or div with visible text, add them
-  Array.from(contentSource.children).forEach((child) => {
-    // Already processed title block
-    if (child === titleBlock) return;
-    // Ignore tool, overlays, etc (by class)
-    if (
-      child.classList.contains('msc-quicktool') ||
-      child.classList.contains('msc-overlay')
-    ) return;
-    // If heading, paragraph, or div/span with text, include
-    if (/^H[1-6]$/i.test(child.tagName) || child.tagName === 'P') {
-      if (child.textContent.trim().length) contentItems.push(child);
-    } else if ((child.tagName === 'DIV' || child.tagName === 'SPAN') && child.textContent.trim().length) {
-      contentItems.push(child);
+  // Title (h1, possibly with <strong>)
+  const titleDiv = element.querySelector('.msc-hero-immersive__title');
+  if (titleDiv) contentItems.push(titleDiv);
+
+  // Quicktool: contains substantial text and form fields (optional)
+  const quicktoolDiv = element.querySelector('.msc-quicktool');
+  if (quicktoolDiv) contentItems.push(quicktoolDiv);
+
+  // Description (optional)
+  const descDiv = element.querySelector('.msc-hero-immersive__description');
+  if (descDiv && descDiv.textContent.trim()) contentItems.push(descDiv);
+
+  // CTAs (optional)
+  const ctasDiv = element.querySelector('.msc-hero-immersive__ctas');
+  if (ctasDiv && ctasDiv.textContent.trim()) contentItems.push(ctasDiv);
+
+  // Edge case: If all above are missing, fallback to headings and paragraphs
+  if (contentItems.length === 0) {
+    const headings = Array.from(element.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+    const paragraphs = Array.from(element.querySelectorAll('p'));
+    if (headings.length || paragraphs.length) {
+      contentItems.push(...headings, ...paragraphs);
     }
-  });
+  }
+  // Compose content row: always single cell
+  const contentRow = [contentItems.length > 0 ? contentItems : ''];
 
-  // Compose the rows for the block table
+  // Compose and replace table
   const cells = [
-    headerRow,
-    [imgEl || ''],
-    [contentItems.length ? contentItems : '']
+    headerRow,         // Row 1: block name
+    imageRow,          // Row 2: image
+    contentRow         // Row 3: main content
   ];
-
-  // Create the table and replace the original element
   const block = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(block);
 }
