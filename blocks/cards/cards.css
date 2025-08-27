@@ -1142,14 +1142,13 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 10px; /* tight grouping */
+  gap: 10px;
   padding: 0;
   margin: 0;
   width: 100%;
   list-style: none;
 }
 
-/* Card base styles */
 .cards.cards38 > ul > li {
   border: none;
   background: none;
@@ -1162,7 +1161,6 @@
   display: flex;
 }
 
-/* Main card left, two stacked cards right */
 .cards.cards38 > ul > li:first-child {
   grid-column: 1 / 2;
   grid-row: 1 / 3;
@@ -1177,7 +1175,6 @@
   flex-direction: column;
 }
 
-/* Images fill card */
 .cards.cards38 .cards-card-image {
   position: absolute;
   inset: 0;
@@ -1194,7 +1191,6 @@
   display: block;
 }
 
-/* Overlay gradient ONLY on lower half, NO white background */
 .cards.cards38 > ul > li::after {
   position: absolute;
   left: 0; right: 0; bottom: 0;
@@ -1207,7 +1203,6 @@
   content: "";
 }
 
-/* Overlay content: always bottom left and tightly grouped */
 .cards.cards38 .cards-card-body {
   position: absolute;
   left: 0;
@@ -1233,7 +1228,6 @@
   pointer-events: auto;
 }
 
-/* Category pill: always overlay, compact, uppercase, bold, black text on yellow */
 .cards.cards38 .cards-card-body p {
   margin: 0 0 2px;
   font-size: 1em;
@@ -1245,7 +1239,6 @@
   max-width: 100%;
 }
 
-/* Force uppercase/bold/black/yellow for first line = pill */
 .cards.cards38 .cards-card-body p::first-line {
   background: #ffed4e;
   color: #222;
@@ -1257,7 +1250,6 @@
   letter-spacing: .04em;
 }
 
-/* Date: smaller, tighter, white/off-white */
 .cards.cards38 .cards-card-body p br + * {
   color: #e2dfcc;
   font-size: 0.80em;
@@ -1267,7 +1259,6 @@
   display: block;
 }
 
-/* Title: bold, large, tight grouping under date/pill */
 .cards.cards38 .cards-card-body strong {
   display: block;
   color: #fff;
@@ -1284,7 +1275,6 @@
   margin: 8px 0;
 }
 
-/* "Read more": left aligned, tight spacing, off-white, smaller, underline on hover */
 .cards.cards38 .cards-card-body a {
   display: inline-flex;
   align-items: center;
@@ -1309,7 +1299,6 @@
   text-decoration: underline;
 }
 
-/* Subtle circular icon after link text, small and faded */
 .cards.cards38 .cards-card-body a::after {
   display: inline-block;
   width: 6px;
@@ -1322,7 +1311,6 @@
   content: "";
 }
 
-/* Responsive: stack cards vertically on small screens */
 @media (width <= 900px) {
   .cards.cards38 > ul {
     display: flex;
@@ -1344,9 +1332,90 @@
   }
 }
 
-/* Prevent text overflow */
 .cards.cards38 .cards-card-body strong,
 .cards.cards38 .cards-card-body p {
   overflow-wrap: break-word;
   word-break: break-word;
+}
+
+
+.cards.cardsnoimages43 {
+  background: linear-gradient(180deg, #f5f5f5 0%, #fff 100%);
+  min-height: 300px;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 540px) 2fr;
+  align-items: center;
+  height: 41vw;
+  max-height: 360px;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.cards.cardsnoimages43 > ul {
+  grid-column: 2 / 3;
+  width: 100%;
+  max-width: 540px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.cards.cardsnoimages43 > ul > li {
+  display: block;
+  background: none;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.cards.cardsnoimages43 > ul > li:not(:first-child) {
+  display: none;
+}
+
+.cards.cardsnoimages43 .cards-card-body {
+    padding: 16px 8px;
+  }
+
+.cards.cardsnoimages43 .cards-card-body p {
+  color: #222;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cards.cardsnoimages43 .cards-card-body a {
+  color: #1976d2;
+  text-decoration: underline;
+  font-weight: 400;
+  word-break: break-word;
+}
+
+@media (width <= 900px) {
+  .cards.cardsnoimages43 {
+    grid-template-columns: 1fr;
+    height: auto;
+    max-height: none;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+  }
+
+  .cards.cardsnoimages43 > ul {
+    max-width: 96vw;
+    margin-top: 32px;
+  }
+
+  .cards.cardsnoimages43 .cards-card-body {
+    padding: 16px 8px;
+  }
 }
