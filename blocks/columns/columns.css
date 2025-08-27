@@ -1517,7 +1517,6 @@
   color: #444;
 }
 
-/* Responsive: stack vertically on small screens */
 @media (width <= 900px) {
   .columns.columns47 {
     max-width: 100vw;
@@ -1568,5 +1567,170 @@
   .columns.columns47 > div > div:not(.columns-img-col) h3 {
     font-size: 1.3rem;
     margin-bottom: 1.5rem;
+  }
+}
+
+
+.columns.columns48 {
+  background: #fff;
+  box-shadow: none;
+  background-image: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 100vw;
+  min-height: 0;
+}
+
+.columns.columns48 > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 80px;
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  margin: 0 auto;
+
+  /* The block will be more vertically centered if top and bottom paddings are balanced and a bit smaller */
+  padding: 40px 0;
+  background: none;
+  box-shadow: none;
+}
+
+@media (width <= 900px) {
+  .columns.columns48 > div {
+    grid-template-columns: 1fr;
+    gap: 44px 0;
+    padding: 22px 0;
+  }
+}
+
+/* Make each column stack its children vertically, centered in the cell. */
+.columns.columns48 > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: none;
+  padding: 0;
+  box-shadow: none;
+  color: #232323;
+  max-width: 240px;
+  min-width: 0;
+  position: relative;
+  margin: 0 auto;
+
+  /* Let the flex stack stay compact */
+}
+
+/* ICONS - minimal space below to dots */
+.columns.columns48 > div > div:nth-child(1)::before,
+.columns.columns48 > div > div:nth-child(2)::before,
+.columns.columns48 > div > div:nth-child(3)::before {
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+
+.columns.columns48 > div > div:nth-child(1)::before {
+  background-image: url('data:image/svg+xml;utf8,<svg width="48" height="48" fill="none" stroke="black" stroke-width="2" viewBox="0 0 48 48"><path d="M34 14l-8 8M14 34l8-8M32 16a6 6 0 1 1 8.5 8.5l-17 17A6 6 0 0 1 12 40.5l17-17A6 6 0 0 1 32 16z"/></svg>');
+  content: "";
+}
+
+.columns.columns48 > div > div:nth-child(2)::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" stroke="black" stroke-width="2" viewBox="0 0 48 48"><rect x="12" y="20" width="24" height="20" rx="4"/><path d="M24 28v6"/><circle cx="24" cy="31" r="1.5"/><path d="M18 20V16a6 6 0 0 1 12 0v4"/></svg>');
+  content: "";
+}
+
+.columns.columns48 > div > div:nth-child(3)::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" stroke="black" stroke-width="2" viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="7"/><path d="M37 11l-7 7"/></svg>');
+  content: "";
+}
+
+/* DOTS - make dots tight to both icon and text */
+.columns.columns48 > div > div:nth-child(1) > ul,
+.columns.columns48 > div > div:nth-child(2) > ul {
+  position: relative;
+  margin-top: 0;
+}
+
+/* Place dots above li, minimal spacing, very close to icon and text */
+.columns.columns48 > div > div:nth-child(1) > ul::before,
+.columns.columns48 > div > div:nth-child(2) > ul::before {
+  display: block;
+  width: 72px;
+  height: 8px;
+  margin: 0 auto 1px;
+  background: repeating-radial-gradient(circle at 0 4px, #F5DDAB 0 2px, transparent 2px 12px);
+  background-size: 10px 8px;
+  background-repeat: repeat-x;
+  border-radius: 4px;
+  content: "";
+  position: relative;
+  top: 0;
+}
+
+.columns.columns48 > div > div:nth-child(3) > ul::before {
+  display: none;
+}
+
+/* Remove previous afters for dots if present */
+.columns.columns48 > div > div:nth-child(1)::after,
+.columns.columns48 > div > div:nth-child(2)::after,
+.columns.columns48 > div > div:nth-child(3)::after {
+  display: none;
+}
+
+/* TEXT (no extra margin) */
+.columns.columns48 ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.columns.columns48 li {
+  color: #232323;
+  font-size: 13px;
+  line-height: 1.3;
+  font-family: var(--body-font-family);
+  text-align: center;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.columns.columns48 li,
+.columns.columns48 li a {
+  text-decoration: none;
+  color: #232323;
+  font-weight: 400;
+}
+
+/* Responsive tweaks */
+@media (width <= 900px) {
+  .columns.columns48 > div > div {
+    max-width: 100vw;
+    min-width: 0;
+  }
+}
+
+@media (width <= 600px) {
+  .columns.columns48 > div {
+    grid-template-columns: 1fr;
+    gap: 24px 0;
+    padding: 10px 0;
+  }
+
+  .columns.columns48 > div > div {
+    min-width: 0;
+    max-width: 95vw;
+    padding: 0;
   }
 }
