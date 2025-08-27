@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
@@ -43,5 +44,185 @@
 @media (width >= 900px) {
   .hero {
     padding: 40px 32px;
+  }
+}
+
+.hero.hero3 {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100vw;
+  min-height: 340px;
+  background: none;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero.hero3 > div:first-child {
+  flex: 1 1 60%;
+  min-width: 0;
+  height: auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.hero.hero3 > div:first-child > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.hero.hero3 > div:first-child picture,
+.hero.hero3 > div:first-child img {
+  width: 100%;
+  height: 340px;
+  min-height: 340px;
+  object-fit: cover;
+  display: block;
+  border: none;
+  background: none;
+}
+
+/* Ensure image is visible even if parent containers are collapsed */
+.hero.hero3 > div:first-child,
+.hero.hero3 > div:first-child > div {
+  min-height: 340px;
+  height: 340px;
+}
+
+/* CONTENT COLUMN - RIGHT SIDE */
+.hero.hero3 > div:last-child {
+  flex: 1 1 40%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 2;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.hero.hero3 > div:last-child > div {
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* HEADLINE */
+.hero.hero3 h2 {
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-xl);
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 12px;
+  line-height: 1.1;
+  text-align: left;
+}
+
+/* SUBTITLE - with accent */
+.hero.hero3 > div:last-child p:not(.button-container) {
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xs);
+  color: #666;
+  margin: 0 0 24px;
+  line-height: 1.5;
+  position: relative;
+  padding-left: 24px;
+  text-align: left;
+}
+
+/* ACCENT BAR for subtitle */
+.hero.hero3 > div:last-child p:not(.button-container)::before {
+  display: block;
+  width: 16px;
+  height: 3px;
+  background: #FFD600;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+}
+
+/* BUTTON CONTAINER */
+.hero.hero3 .button-container {
+  margin-top: 0;
+  width: 100%;
+}
+
+/* BUTTON override */
+.hero-container > .hero-wrapper > .block.hero.hero3 .button {
+  background: #222;
+  color: #fff;
+  border-radius: 2em;
+  font-size: var(--body-font-size-xs);
+  font-weight: 500;
+  padding: 12px 36px 12px 28px;
+  line-height: 1.25;
+  box-shadow: none;
+  border: none;
+  outline: none;
+  transition: background 0.2s;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Button hover/focus style */
+.hero-container > .hero-wrapper > .block.hero.hero3 .button:hover,
+.hero-container > .hero-wrapper > .block.hero.hero3 .button:focus {
+  background: #333;
+  color: #fff;
+}
+
+/* Responsive: stack columns and center content on small screens */
+@media (width <= 900px) {
+  .hero.hero3 {
+    flex-direction: column;
+    min-height: 0;
+    width: 100vw;
+  }
+
+  .hero.hero3 > div:first-child,
+  .hero.hero3 > div:last-child {
+    min-width: 0;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero.hero3 > div:first-child picture,
+  .hero.hero3 > div:first-child img {
+    min-height: 180px;
+    max-height: 300px;
+    height: 180px;
+  }
+
+  .hero.hero3 > div:last-child {
+    padding: 32px 16px 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero.hero3 > div:last-child > div {
+    max-width: 100%;
+    gap: 14px;
+    margin-top: 0;
   }
 }
