@@ -1,16 +1,19 @@
 /* stylelint-disable no-descending-specificity */
 .columns > div {
-  display: flex;
+  display: grid;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 680px;
+  max-width: 1120px;
   margin: 0 auto;
-  gap: 100px;
-  min-height: 540px;
+  gap: 0;
+  min-height: 80px;
   box-sizing: border-box;
   height: 100%;
+  grid-template-columns: repeat(5, 1fr);
+  margin-left: 48px;
+  margin-right: 48px;
 }
 
 .columns img {
@@ -20,17 +23,18 @@
 .columns > div > div {
   order: 1;
   background: none;
-  padding: 0 6px;
+  padding: 0 8px;
   color: #fff;
   font-size: 15px;
   max-width: 155px;
   width: 100%;
   box-sizing: border-box;
-  text-align: left;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
+  min-width: 0;
 }
 
 .columns > div > .columns-img-col {
@@ -551,13 +555,16 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
+  min-height: 80px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  height: 100vh;
+  height: auto;
+  background: #fff;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .columns > div > div > p {
@@ -573,17 +580,22 @@
 
 .columns ul {
   list-style: none;
-  margin: 0 0 18px;
+  margin: 0;
   padding: 0;
 }
 
 .columns li {
-  margin: 0 0 7px;
-  color: #fff;
-  font-size: 15px;
-  line-height: 1.4;
-  word-break: normal;
+  margin: 0;
+  color: #333;
+  font-size: 13px;
+  line-height: 1.35;
+  word-break: break-word;
   overflow-wrap: break-word;
+  font-family: var(--body-font-family);
+  text-align: center;
+  font-weight: 400;
+  padding: 0;
+  white-space: normal;
 }
 
 .columns a {
@@ -663,13 +675,12 @@
   align-items: stretch;
 }
 
-/* Left (text) column improvements */
 .columns.columns23 > div > div:not(.columns-img-col) {
   background: #eed385;
   flex: 1 1 0;
   min-width: 0;
   max-width: 50%;
-  padding: 60px 56px; /* More padding for balance */
+  padding: 60px 56px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -681,7 +692,6 @@
   height: 100%;
 }
 
-/* Heading styling, no forced line breaks */
 .columns.columns23 h2 {
   color: #181818;
   font-size: 2.6rem;
@@ -703,12 +713,10 @@
   text-align: left;
 }
 
-/* Button section at bottom of text area */
 .columns.columns23 .button-container {
   margin-top: 16px;
 }
 
-/* Button styling override */
 .columns.columns23 .button-container .button {
   background: none;
   color: #181818;
@@ -727,7 +735,6 @@
   font-family: var(--body-font-family);
 }
 
-/* Right (image) column: ensure full fill and aspect crop */
 .columns.columns23 > div > .columns-img-col {
   flex: 1 1 0;
   min-width: 0;
@@ -743,7 +750,6 @@
   overflow: hidden;
 }
 
-/* Make sure the image completely fills the right column */
 .columns.columns23 .columns-img-col picture,
 .columns.columns23 .columns-img-col img {
   width: 100%;
@@ -759,7 +765,6 @@
   box-sizing: border-box;
 }
 
-/* Responsive: stack columns vertically, image on top */
 @media (width <= 900px) {
   .columns.columns23 > div {
     flex-direction: column;
@@ -781,5 +786,39 @@
     min-height: 180px;
     height: 220px;
     object-fit: cover;
+  }
+}
+
+@media (width <= 900px) {
+  .columns > div {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 98vw;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .columns > div > div {
+    padding: 0 6px;
+  }
+}
+
+@media (width <= 600px) {
+  .columns > div {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 4px;
+    max-width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .columns > div > div {
+    min-width: 60px;
+    padding: 0 2px;
+  }
+
+  .columns {
+    padding: 16px 0;
   }
 }
