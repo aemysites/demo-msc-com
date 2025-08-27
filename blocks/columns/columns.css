@@ -1,7 +1,16 @@
 /* stylelint-disable no-descending-specificity */
 .columns > div {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  gap: 100px;
+  min-height: 540px;
+  box-sizing: border-box;
+  height: 100%;
 }
 
 .columns img {
@@ -10,6 +19,18 @@
 
 .columns > div > div {
   order: 1;
+  background: none;
+  padding: 0 6px;
+  color: #fff;
+  font-size: 15px;
+  max-width: 155px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .columns > div > .columns-img-col {
@@ -386,7 +407,6 @@
   gap: 0;
 }
 
-/* Responsive: stack columns vertically on small screens */
 @media (width <= 900px) {
   .columns.columns17 {
     flex-direction: column;
@@ -394,7 +414,6 @@
   }
 }
 
-/* === LEFT COLUMN === */
 .columns.columns17 > div:first-child {
   background-color: #EDD287;
   flex: 1 1 0;
@@ -408,7 +427,6 @@
   box-sizing: border-box;
 }
 
-/* Center the content vertically and horizontally in the left column */
 .columns.columns17 > div:first-child > div:first-child {
   flex: 1 1 0;
   display: flex;
@@ -417,7 +435,6 @@
   align-items: flex-start;
 }
 
-/* Hide left column's image block */
 .columns.columns17 > div:first-child > div:last-child {
   display: none;
 }
@@ -429,7 +446,6 @@
   }
 }
 
-/* Heading styles */
 .columns.columns17 > div:first-child h2 {
   color: #222;
   font-size: 2.1rem;
@@ -438,7 +454,6 @@
   line-height: 1.15;
 }
 
-/* Supporting text styles */
 .columns.columns17 > div:first-child p:not(.button-container) {
   color: #555;
   font-size: 1rem;
@@ -447,7 +462,6 @@
   max-width: 420px;
 }
 
-/* Button styles in left column */
 .columns.columns17 > div:first-child .button-container {
   margin: 16px 0 0;
 }
@@ -468,7 +482,6 @@
   transition: color 0.2s;
 }
 
-/* === RIGHT COLUMN === */
 .columns.columns17 > div:last-child {
   flex: 1 1 0;
   display: flex;
@@ -481,12 +494,10 @@
   align-items: stretch;
 }
 
-/* Hide right column's text block */
 .columns.columns17 > div:last-child > div:first-child {
   display: none;
 }
 
-/* Make image area fill full column */
 .columns.columns17 > div:last-child > div:last-child {
   flex: 1 1 0;
   display: flex;
@@ -497,7 +508,6 @@
   width: 100%;
 }
 
-/* Stretch the image's parent <p> to fill available space */
 .columns.columns17 > div:last-child > div:last-child > p {
   flex: 1 1 0;
   display: flex;
@@ -509,7 +519,6 @@
   padding: 0;
 }
 
-/* Make image fill its parent fully */
 .columns.columns17 > div:last-child img {
   flex: 1 1 0;
   width: 100%;
@@ -524,7 +533,6 @@
   max-height: unset;
 }
 
-/* Responsive: Remove min-heights for stacking on mobile */
 @media (width <= 900px) {
   .columns.columns17 > div:first-child,
   .columns.columns17 > div:last-child {
@@ -535,4 +543,111 @@
   .columns.columns17 > div:last-child img {
     min-height: 180px;
   }
+}
+
+
+.columns {
+  /* Darker overlay, perfect vertical centering */
+  background-image: linear-gradient(rgb(0 0 0 / 68%), rgb(0 0 0 / 68%)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  height: 100vh;
+}
+
+/* Center inner row grid exactly middle of viewport, tighter and with larger gaps */
+
+/* Each column: narrower, more compact */
+
+/* Headings: larger, spaced further from lists, visually heavy */
+.columns > div > div > p {
+  font-family: var(--heading-font-family);
+  font-weight: 800;
+  font-size: 1.6em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  margin-bottom: 42px;
+  margin-top: 0;
+}
+
+/* Lists: no bullets, compact spacing, last list flush bottom */
+.columns ul {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+}
+
+.columns li {
+  margin: 0 0 7px;
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.4;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* Links: clean, readable, compact, break long URLs nicely */
+.columns a {
+  color: #fff;
+  text-decoration: underline;
+  transition: color 0.2s;
+  overflow-wrap: break-word;
+  word-break: normal;
+  font-size: 15px;
+}
+
+.columns a:hover,
+.columns a:focus {
+  color: #FFD700;
+  text-decoration: underline;
+  outline: none;
+}
+
+/* Responsive stacking: more gap and padding for better separation */
+@media (width <= 900px) {
+  .columns {
+    min-height: 0;
+    height: auto;
+    padding: 32px 0;
+  }
+
+  .columns > div {
+    flex-direction: column;
+    align-items: center;
+    gap: 44px;
+    min-height: 0;
+    padding: 0 20px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .columns > div > div {
+    max-width: 95vw;
+    padding: 0;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+}
+
+@media (width <= 600px) {
+  .columns {
+    padding: 16px 0;
+  }
+
+  .columns > div {
+    gap: 28px;
+    padding: 0 8px;
+  }
+}
+
+/* Remove extra bottom margin for last ul in column */
+.columns > div > div > ul:last-child {
+  margin-bottom: 0;
 }
