@@ -327,7 +327,6 @@
   padding: 0;
 }
 
-/* IMAGE COLUMN: first child */
 .hero.hero24 > div:first-child {
   flex: 0 0 201px;
   display: flex;
@@ -348,7 +347,6 @@
   display: block;
 }
 
-/* TEXT COLUMN: second child */
 .hero.hero24 > div:last-child {
   flex: 1 1 0%;
   display: flex;
@@ -357,11 +355,10 @@
   justify-content: flex-start;
   min-width: 0;
   margin: 0;
-  padding: 0 0 0 32px; /* Add left spacing so text is not flush against image */
+  padding: 0 0 0 32px;
   max-width: 800px;
 }
 
-/* Tag Row: pills, horizontal */
 .hero.hero24 > div:last-child > div > p:first-child {
   display: flex;
   flex-direction: row;
@@ -370,7 +367,6 @@
   padding: 0;
 }
 
-/* Tag style */
 .hero.hero24 > div:last-child > div > p:first-child a {
   background: #E6CC7A;
   color: #222;
@@ -394,7 +390,6 @@
   text-decoration: none;
 }
 
-/* Headline */
 .hero.hero24 > div:last-child > div > h1 {
   font-size: 24px;
   font-weight: 700;
@@ -408,7 +403,6 @@
   padding-bottom: 0;
 }
 
-/* Decorative underline below headline */
 .hero.hero24 > div:last-child > div > h1::after {
   display: block;
   width: 50px;
@@ -419,7 +413,6 @@
   content: "";
 }
 
-/* Date styling */
 .hero.hero24 > div:last-child > div > p:last-child {
   font-size: 11px;
   color: #222;
@@ -431,7 +424,6 @@
   text-align: left;
 }
 
-/* Remove unwanted centering from inherited styles */
 .hero.hero24 h1,
 .hero.hero24 h2,
 .hero.hero24 h3,
@@ -445,13 +437,11 @@
   color: #222;
 }
 
-/* Ensure links within hero text do not inherit global link colors */
 .hero.hero24 a:not(.button) {
   color: #222;
   text-decoration: none;
 }
 
-/* Responsive stacking: stack columns vertically on mobile */
 @media (width <= 730px) {
   .hero.hero24 {
     flex-direction: column;
@@ -470,5 +460,106 @@
   .hero.hero24 > div:last-child {
     max-width: 100%;
     padding-left: 0;
+  }
+}
+
+
+.hero.hero35 {
+  background: #fff;
+  min-height: 120px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.hero.hero35 > div:first-child {
+  display: none;
+}
+
+.hero.hero35 > div:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.hero.hero35 > div:last-child > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.hero.hero35 h3 {
+  font-family: var(--heading-font-family);
+  font-size: 22px;
+  font-weight: 700;
+  color: #222;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  max-width: 480px;
+  line-height: 1.2;
+}
+
+/* Main row layout and improved vertical alignment */
+.hero.hero35 h3 + p {
+  margin: 0;
+  font-size: 12px;
+  color: #222;
+  font-weight: 500;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  line-height: 1.6; /* Helps vertical centering for text */
+  padding-top: 2px;  /* Nudge text downward for alignment */
+}
+
+/* Improved vertical alignment for the button */
+.hero.hero35 h3 + p::after {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #222;
+  margin: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 4V13M10 13L6.5 9.5M10 13L13.5 9.5' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='4' y='16' width='12' height='1.5' rx='0.75' fill='white'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 14px 14px;
+  vertical-align: middle;
+  position: relative;
+  top: 1px; /* Nudge button down for perfect centering */
+  content: "";
+}
+
+.hero.hero35 ul {
+  display: none;
+}
+
+@media (width <= 600px) {
+  .hero.hero35 h3 {
+    font-size: 16px;
+    max-width: 92vw;
+    margin-bottom: 14px;
+  }
+
+  .hero.hero35 h3 + p::after {
+    width: 24px;
+    height: 24px;
+    background-size: 12px 12px;
+    top: 0;
+  }
+
+  .hero.hero35 h3 + p {
+    gap: 6px;
+    font-size: 11px;
+    padding-top: 1px;
   }
 }
