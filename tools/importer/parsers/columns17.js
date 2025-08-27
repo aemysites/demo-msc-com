@@ -1,60 +1,53 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find all slick slides (each is a column-row pair)
-  const slides = element.querySelectorAll('.slick-slide');
+  // Find all slides
+  const slides = Array.from(element.querySelectorAll('.msc-slider__slide'));
 
-  // Header row as per block name
-  const rows = [['Columns (columns17)']];
+  // For each slide, prepare a column cell
+  const columns = slides.map((slide) => {
+    // Container for the slide
+    const container = slide.querySelector('.msc-slider__container');
+    if (!container) return '';
 
-  slides.forEach((slide) => {
-    // Each slide contains .msc-slider__slide > .msc-slider__container
-    const slideWrap = slide.querySelector('.msc-slider__slide');
-    if (!slideWrap) return;
-    const container = slideWrap.querySelector('.msc-slider__container');
-    if (!container) return;
+    // Get the two main areas: image and content
+    const imageDiv = container.querySelector('.msc-slider__image');
+    const contentDiv = container.querySelector('.msc-slider__content');
 
-    // Usually two cells: one with image(s), one with content
-    // .msc-slider__image.msc-image-banner__image (image cell)
-    // .msc-image-banner__content.msc-slider__content.bg-primary (content cell)
-
-    // Get image cell
-    let img = null;
-    const imgCell = container.querySelector('.msc-slider__image, .msc-image-banner__image');
-    if (imgCell) {
-      // Try to find a desktop image with src, otherwise mobile, otherwise any img
-      img = imgCell.querySelector('img.desktop[src], img.desktop[data-src], img.mobile[src], img.mobile[data-src], img');
-      if (img) {
-        // Normalize lazy images: set src if only data-src is present
-        if (!img.src && img.getAttribute('data-src')) {
-          img.src = img.getAttribute('data-src');
-        }
-      }
+    // Image: prefer img.desktop, else mobile, else any img
+    let imgEl = null;
+    if (imageDiv) {
+      imgEl = imageDiv.querySelector('img.desktop') || imageDiv.querySelector('img.mobile') || imageDiv.querySelector('img');
     }
 
-    // Get content cell
-    const contentCell = container.querySelector('.msc-image-banner__content, .msc-slider__content');
-    let contentArr = [];
-    if (contentCell) {
-      // Grab heading(s)
-      const heading = contentCell.querySelector('h2, h1, h3, h4, h5, h6');
-      if (heading) contentArr.push(heading);
-      // Grab description text
-      const desc = contentCell.querySelector('.msc-description');
-      if (desc) contentArr.push(desc);
-      // Grab CTA
-      const cta = contentCell.querySelector('.msc-image-banner__cta a, .msc-slider__cta a');
-      if (cta) contentArr.push(cta);
+    // Compose content: title, description, CTA (keep references)
+    const contentNodes = [];
+    if (contentDiv) {
+      const titleEl = contentDiv.querySelector('.msc-section-title');
+      if (titleEl) contentNodes.push(titleEl);
+      const descEl = contentDiv.querySelector('.msc-description');
+      if (descEl) contentNodes.push(descEl);
+      const ctaEl = contentDiv.querySelector('.msc-image-banner__cta a');
+      if (ctaEl) contentNodes.push(ctaEl);
     }
-    // If no content, create an empty div so the cell isn't empty
-    if (contentArr.length === 0) contentArr.push(document.createElement('div'));
 
-    // Compose row: column 1 is content, column 2 is image (text-left, image-right)
-    rows.push([
-      contentArr.length === 1 ? contentArr[0] : contentArr, // preserve as HTML element or array
-      img
-    ]);
+    // The column cell should contain the content (heading, desc, link) and the image, as separate blocks
+    // Use an array so all elements appear in order in the cell
+    const cell = [];
+    if (contentNodes.length) {
+      cell.push(...contentNodes);
+    }
+    if (imgEl) {
+      cell.push(imgEl);
+    }
+    return cell;
   });
 
-  const table = WebImporter.DOMUtils.createTable(rows, document);
+  // Table header (matches example exactly)
+  const headerRow = ['Columns (columns17)'];
+
+  // Build the table (header row, then content row with one cell per column)
+  const cells = [headerRow, columns];
+  const table = WebImporter.DOMUtils.createTable(cells, document);
+
   element.replaceWith(table);
 }

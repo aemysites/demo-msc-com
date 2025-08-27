@@ -1,48 +1,73 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the main container that holds the cards
-  let cardsContainer = element;
-  if (!element.classList.contains('msc-solution__container')) {
-    cardsContainer = element.querySelector('.msc-solution__container');
-    if (!cardsContainer) {
-      // fallback: find first child with right class
-      const possible = element.querySelectorAll('[class*=msc-solution__container]');
-      if (possible.length) cardsContainer = possible[0];
-      else cardsContainer = element;
-    }
-  }
-
-  // Find all card elements inside the container
-  const cardElements = Array.from(cardsContainer.querySelectorAll('.msc-solution__card'));
-
-  // Set up the table rows
-  const rows = [['Cards (cards2)']]; // Header row matches the example
-
-  cardElements.forEach(card => {
-    // Find the first non-d-none img for the card
+  // Helper: get visible image
+  function getVisibleImg(card) {
     const imgs = Array.from(card.querySelectorAll('img'));
-    let img = null;
-    for (const im of imgs) {
-      if (!im.classList.contains('d-none')) {
-        img = im;
-        break;
+    for (let img of imgs) {
+      if (!img.classList.contains('d-none')) {
+        return img;
       }
     }
-    // If no visible img is found, set to null
+    return imgs[0] || null;
+  }
 
-    // Find card content
+  let container = element.querySelector('.msc-solution__container');
+  if (!container) container = element;
+  const cards = Array.from(container.querySelectorAll('.msc-solution__card'));
+
+  const cells = [['Cards (cards2)']];
+
+  cards.forEach(card => {
+    const img = getVisibleImg(card);
     const content = card.querySelector('.msc-solution__card-content');
-
-    // Defensive: If content is missing, create an empty div
-    let textContent = content;
-    if (!content) {
-      textContent = document.createElement('div');
+    const textCell = [];
+    if (content) {
+      // Title
+      const title = content.querySelector('.msc-solution__card-content-title');
+      if (title && title.textContent.trim()) {
+        const strong = document.createElement('strong');
+        strong.textContent = title.textContent.trim();
+        textCell.push(strong);
+      }
+      // Description: all <p> in .msc-solution__card-content-text (include even if empty)
+      const descContainer = content.querySelector('.msc-solution__card-content-text');
+      if (descContainer) {
+        const ps = Array.from(descContainer.querySelectorAll('p'));
+        ps.forEach((p) => {
+          // Always add <br> before a new paragraph if there is already something
+          if (textCell.length > 0) {
+            textCell.push(document.createElement('br'));
+          }
+          textCell.push(p);
+        });
+        // CTA: any <a> inside descContainer or directly under content
+        let ctaLink = descContainer.querySelector('a');
+        if (!ctaLink) {
+          ctaLink = content.querySelector('a');
+        }
+        if (ctaLink) {
+          textCell.push(document.createElement('br'));
+          textCell.push(ctaLink);
+        }
+      } else {
+        // If no description container, check for link directly under content
+        const ctaLink = content.querySelector('a');
+        if (ctaLink) {
+          if (textCell.length > 0) {
+            textCell.push(document.createElement('br'));
+          }
+          textCell.push(ctaLink);
+        }
+      }
     }
-    // Defensive: If img is missing, just use null in cell (table cell will be empty)
-    rows.push([img, textContent]);
+    if (textCell.length === 0) {
+      textCell.push('');
+    }
+    cells.push([
+      img || '',
+      textCell.length === 1 ? textCell[0] : textCell
+    ]);
   });
-
-  // Create the block table and replace the element
-  const block = WebImporter.DOMUtils.createTable(rows, document);
+  const block = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(block);
 }

@@ -1,35 +1,34 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the .msc-icon-stats__list-icons element
-  const iconsList = element.querySelector('.msc-icon-stats__list-icons');
-  if (!iconsList) return; // nothing to do
+  // Find the main icon stats block within the element
+  const iconStats = element.querySelector('.msc-icon-stats');
+  if (!iconStats) return;
 
-  // Extract all icon+text list items, excluding dots-separator
-  const columns = [];
-  iconsList.querySelectorAll('li').forEach(li => {
-    if (li.classList.contains('dots-separator')) return;
-    // Collect the icon (img) and the text <p> as they appear
-    const cellContent = [];
+  // Find the icons list
+  const list = iconStats.querySelector('.msc-icon-stats__list-icons');
+  if (!list) return;
+
+  // Get all <li> that are not separators
+  const items = Array.from(list.querySelectorAll('li')).filter(li => !li.classList.contains('dots-separator'));
+
+  // Build the columns (one column per icon/stat)
+  const columns = items.map(li => {
+    // Each li: get icon and text
     const iconSpan = li.querySelector('.msc-icon-stats__list-icon');
-    if (iconSpan) {
-      const img = iconSpan.querySelector('img');
-      if (img) cellContent.push(img);
-    }
-    const text = li.querySelector('.msc-icon-stats__text');
-    if (text) cellContent.push(text);
-    if (cellContent.length === 1) {
-      columns.push(cellContent[0]);
-    } else if (cellContent.length > 1) {
-      const div = document.createElement('div');
-      cellContent.forEach(n => div.appendChild(n));
-      columns.push(div);
-    }
+    const textP = li.querySelector('.msc-icon-stats__text');
+    const cellContent = [];
+    if (iconSpan) cellContent.push(iconSpan);
+    if (textP) cellContent.push(textP);
+    return cellContent;
   });
 
-  // According to the block guidance, header row is always the block name
-  const headerRow = ['Columns (columns49)'];
-  // Second row: as many columns as found
-  const cells = [headerRow, columns];
+  // Table header must be exactly 'Columns (columns49)' as a single cell
+  const headerRow = ['Columns (columns49)']; // SINGLE COLUMN HEADER
+  const cells = [headerRow, columns]; // columns is an array of cells, so this is the 2nd row
+
+  // Create the table
   const table = WebImporter.DOMUtils.createTable(cells, document);
+
+  // Replace the element with the table
   element.replaceWith(table);
 }

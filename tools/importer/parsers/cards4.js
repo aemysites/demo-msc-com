@@ -1,68 +1,64 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Build header row that matches the example
-  const rows = [['Cards (cards4)']];
+  // Table header as specified in the requirements and example
+  const headerRow = ['Cards (cards4)'];
+  const cells = [headerRow];
 
-  // Select all card elements directly under the block
-  const cardNodes = element.querySelectorAll('.msc-press-room-nav-elements__card');
+  const grid = element.querySelector('.grid-x.align-center');
+  if (!grid) return;
 
-  cardNodes.forEach(card => {
-    // IMAGE: always present in each card
-    const img = card.querySelector('img');
+  // Get all direct card elements
+  const cardEls = Array.from(grid.children);
+  cardEls.forEach((card) => {
+    // First cell: image
+    let imgEl = card.querySelector('img') || '';
 
-    // TEXT/CTA: build the content block for the second cell
+    // Second cell: text content (title, description, CTA)
     const contentDiv = card.querySelector('.msc-press-room-nav-elements__card-content');
-    const cellContent = [];
-
-    // Title (label) as bold
-    const label = contentDiv && contentDiv.querySelector('.msc-press-room-nav-elements__card-label');
-    if (label) {
-      // Reference the original label element, but wrap in <strong> for semantic meaning
-      const strong = document.createElement('strong');
-      strong.textContent = label.textContent.trim();
-      cellContent.push(strong);
-    }
-
-    // There is no separate description, but if there is any other text, include it
-    // (for flexibility, include all non-empty text nodes in contentDiv that are not the label)
-    Array.from(contentDiv.childNodes).forEach(node => {
-      if (
-        node.nodeType === Node.TEXT_NODE &&
-        node.textContent.trim() &&
-        (!label || node.textContent.trim() !== label.textContent.trim())
-      ) {
-        cellContent.push(document.createTextNode(node.textContent.trim()));
+    const textCell = [];
+    let labelEl = null;
+    if (contentDiv) {
+      // Title
+      labelEl = contentDiv.querySelector('.msc-press-room-nav-elements__card-label');
+      if (labelEl) {
+        const strong = document.createElement('strong');
+        strong.textContent = labelEl.textContent.trim();
+        textCell.push(strong);
       }
-      if (
-        node.nodeType === Node.ELEMENT_NODE &&
-        node.tagName !== 'P' &&
-        node !== label &&
-        node.tagName !== 'A'
-      ) {
-        cellContent.push(node);
+      // Description (all <p> after label that are NOT the label)
+      let foundLabel = false;
+      Array.from(contentDiv.children).forEach((child) => {
+        if (child === labelEl) {
+          foundLabel = true;
+          return;
+        }
+        if (foundLabel && child.tagName.toLowerCase() === 'p' && child.className !== 'msc-press-room-nav-elements__card-label') {
+          // Only push non-empty descriptions
+          if (child.textContent.trim()) {
+            textCell.push(document.createElement('br'));
+            textCell.push(child);
+          }
+        }
+      });
+      // CTA link (the <a> present in the content div)
+      const cta = contentDiv.querySelector('a.msc-press-room-nav-elements__card-cta');
+      if (cta && cta.href) {
+        const link = document.createElement('a');
+        link.href = cta.href;
+        link.textContent = cta.getAttribute('title') || (labelEl ? labelEl.textContent.trim() : cta.href);
+        if (cta.hasAttribute('target')) link.setAttribute('target', cta.getAttribute('target'));
+        if (cta.hasAttribute('rel')) link.setAttribute('rel', cta.getAttribute('rel'));
+        textCell.push(document.createElement('br'));
+        textCell.push(link);
       }
-    });
-
-    // CTA link, use original element, but provide a visible name
-    const cta = contentDiv && contentDiv.querySelector('a[href]');
-    if (cta) {
-      // Add a <br> if there's already a title above
-      if (cellContent.length) cellContent.push(document.createElement('br'));
-      // Use CTA's title attribute, otherwise fallback to label or href
-      const a = document.createElement('a');
-      a.href = cta.href;
-      a.textContent = cta.getAttribute('title') || (label ? label.textContent.trim() : cta.href);
-      cellContent.push(a);
     }
-
-    // Construct row: [img, cellContent]
-    rows.push([
-      img,
-      cellContent
+    cells.push([
+      imgEl,
+      textCell.length > 0 ? textCell : ''
     ]);
   });
 
-  // Create and replace the block table
-  const table = WebImporter.DOMUtils.createTable(rows, document);
+  // Create block table
+  const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }

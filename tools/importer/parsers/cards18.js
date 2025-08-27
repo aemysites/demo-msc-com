@@ -1,63 +1,51 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const headerRow = ['Cards (cards18)'];
-  const rows = [headerRow];
+  // Cards (cards18) block header, as per example
+  const cells = [['Cards (cards18)']];
 
-  // Find all card nodes in the carousel/slider
-  const slides = element.querySelectorAll('.slick-track > .slick-slide');
-  slides.forEach((slide) => {
-    const card = slide.querySelector('.msc-direct-integrations__slider-card');
-    if (!card) return;
-
-    // First cell: image/icon
-    let imageCell = null;
-    const imageWrapper = card.querySelector('.msc-direct-integrations__card-image');
-    if (imageWrapper) {
-      const img = imageWrapper.querySelector('img');
-      if (img) {
-        imageCell = img;
-      }
+  // Get all card elements within the slick-track
+  const slickTrack = element.querySelector('.slick-track');
+  if (!slickTrack) return;
+  const cardWrappers = slickTrack.querySelectorAll('.msc-direct-integrations__slider-card');
+  
+  cardWrappers.forEach(card => {
+    // Image cell
+    let img = card.querySelector('.msc-direct-integrations__card-image img');
+    if (img && !img.src && img.getAttribute('data-src')) {
+      img.src = img.getAttribute('data-src');
     }
 
-    // Second cell: text block (title, description, CTA)
-    const content = card.querySelector('.msc-direct-integrations__card-content');
-    const textCellContent = [];
+    // Text cell
+    const contentDiv = card.querySelector('.msc-direct-integrations__card-content');
+    const cellContent = [];
 
-    // Title (as heading/strong)
-    const title = content ? content.querySelector('.msc-direct-integrations__card-title') : null;
-    if (title) {
-      // Use a <strong> for semantic heading inside a card cell
+    // Title (as <strong>, matching example's heading style)
+    const titleElem = contentDiv.querySelector('.msc-direct-integrations__card-title');
+    if (titleElem) {
       const strong = document.createElement('strong');
-      // Use innerHTML to preserve potential formatting
-      strong.innerHTML = title.innerHTML;
-      textCellContent.push(strong);
+      strong.textContent = titleElem.textContent.trim();
+      cellContent.push(strong);
     }
-
-    // Description
-    const descWrapper = content ? content.querySelector('.msc-direct-integrations__card-description') : null;
-    if (descWrapper) {
-      // Grab all <p> inside description
-      const ps = descWrapper.querySelectorAll('p');
-      ps.forEach((p) => {
-        textCellContent.push(p);
+    // Description (use all <p> inside .msc-direct-integrations__card-description)
+    const descDiv = contentDiv.querySelector('.msc-direct-integrations__card-description');
+    if (descDiv) {
+      descDiv.querySelectorAll('p').forEach(p => {
+        cellContent.push(p);
       });
     }
-
-    // CTA link
-    const cta = content ? content.querySelector('a.msc-link-arrow-simple') : null;
+    // CTA link (optional)
+    const cta = contentDiv.querySelector('a.msc-link-arrow-simple');
     if (cta) {
-      textCellContent.push(cta);
+      cellContent.push(cta);
     }
 
-    // Only create row if at least image and some text exists
-    if (imageCell && textCellContent.length) {
-      rows.push([
-        imageCell,
-        textCellContent
-      ]);
-    }
+    cells.push([
+      img,
+      cellContent
+    ]);
   });
 
-  const block = WebImporter.DOMUtils.createTable(rows, document);
+  // Create and replace block table
+  const block = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(block);
 }

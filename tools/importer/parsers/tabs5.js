@@ -1,48 +1,50 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Header row as required by block spec
+  // 1. Get the tab labels (all <a> in nav, ignore indicator)
+  const nav = element.querySelector('.msc-tabs__nav');
+  const tabLinks = Array.from(nav.querySelectorAll('a.msc-tabs__tab'));
+
+  // 2. Get all tab panel elements, in order
+  const panelsContainer = element.querySelector('.msc-tabs__panels');
+  const panelEls = Array.from(panelsContainer.querySelectorAll(':scope > .msc-tabs__panel'));
+
+  // 3. Build rows for block table
+  //    Each row: [tab label text, tab content (reference to existing .msc-bodytext content)]
+  const rows = tabLinks.map((tabLink, idx) => {
+    // Get tab label (prefer <span>, fallback to textContent)
+    let tabLabel = '';
+    const span = tabLink.querySelector('span');
+    if (span) {
+      tabLabel = span.textContent.trim();
+    } else {
+      tabLabel = tabLink.textContent.trim();
+    }
+
+    // Get tab panel content matching this tab (same order)
+    let tabContent = '';
+    if (panelEls[idx]) {
+      // Try to get .msc-bodytext, otherwise the panel itself
+      const body = panelEls[idx].querySelector('.msc-bodytext');
+      if (body) {
+        tabContent = body;
+      } else {
+        tabContent = panelEls[idx];
+      }
+    } else {
+      // Fallback: empty div
+      tabContent = document.createElement('div');
+    }
+
+    return [tabLabel, tabContent];
+  });
+
+  // 4. Table header row
   const headerRow = ['Tabs (tabs5)'];
 
-  // Get the nav with tab labels
-  const nav = element.querySelector('.msc-tabs__nav');
-  const tabLinks = nav.querySelectorAll('a.msc-tabs__tab');
+  // 5. Assemble table data
+  const cells = [headerRow, ...rows];
 
-  // Get all tab panels
-  const panelsContainer = element.querySelector('.msc-tabs__panels');
-  const panelEls = Array.from(panelsContainer.querySelectorAll('.msc-tabs__panel'));
-
-  // Gather tab info: label and tabId
-  const tabs = [];
-  tabLinks.forEach((tabLink) => {
-    const labelEl = tabLink.querySelector('span');
-    const label = labelEl ? labelEl.textContent.trim() : tabLink.textContent.trim();
-    const tabId = tabLink.getAttribute('x-ref');
-    tabs.push({ tabId, label });
-  });
-
-  // Assemble rows: header, then one row per tab
-  const rows = [headerRow];
-
-  tabs.forEach((tab) => {
-    // Find the panel that corresponds to this tabId
-    // x-show = tab === 'TABID'
-    let panel = panelEls.find(panelEl => {
-      const xShow = panelEl.getAttribute('x-show') || '';
-      return xShow.includes(`'${tab.tabId}'`);
-    });
-    if (!panel) return;
-    // The panel's main content is inside .msc-bodytext or .msc-title .msc-bodytext
-    let contentEl = null;
-    contentEl = panel.querySelector('.msc-title .msc-bodytext, .msc-bodytext');
-    // If none found, fallback to panel's main content
-    if (!contentEl) contentEl = panel;
-    rows.push([
-      tab.label,
-      contentEl
-    ]);
-  });
-
-  // Create and replace
-  const table = WebImporter.DOMUtils.createTable(rows, document);
+  // 6. Create the block table and replace the element
+  const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }

@@ -1,68 +1,80 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
+  // Define block header row as in the example
   const headerRow = ['Cards (cards6)'];
+  const cells = [headerRow];
+
+  // Get the slick-track containing the slides
   const slickTrack = element.querySelector('.slick-track');
   if (!slickTrack) return;
+
+  // Get all slick-slide elements (cards) in order
   const slides = slickTrack.querySelectorAll('.slick-slide');
-  const rows = [];
   slides.forEach((slide) => {
+    // Find the card container inside each slide
     const card = slide.querySelector('.msc-direct-integrations__slider-card');
     if (!card) return;
-    // Get image
-    let imgCell = '';
-    const imgWrap = card.querySelector('.msc-direct-integrations__card-image');
-    if (imgWrap) {
-      const img = imgWrap.querySelector('img');
-      if (img && (img.src || img.getAttribute('data-src'))) {
-        imgCell = img;
+
+    // --- IMAGE (first cell) ---
+    const imgContainer = card.querySelector('.msc-direct-integrations__card-image');
+    let imgEl = imgContainer && imgContainer.querySelector('img');
+    if (imgEl) {
+      // Ensure that src is set, using data-src if needed
+      if (!imgEl.src && imgEl.getAttribute('data-src')) {
+        imgEl.src = imgEl.getAttribute('data-src');
       }
     }
-    // Get title, description, CTA
-    const textContent = [];
+
+    // --- TEXT CONTENT (second cell) ---
     const cardContent = card.querySelector('.msc-direct-integrations__card-content');
+    const textContent = [];
+
+    // Title: Use <strong> for semantic meaning (match example)
+    let titleEl = cardContent && cardContent.querySelector('.msc-direct-integrations__card-title');
+    if (titleEl) {
+      // Reference the element, but wrap in <strong> for bold
+      const strong = document.createElement('strong');
+      strong.innerHTML = titleEl.innerHTML.trim();
+      textContent.push(strong);
+    }
+
+    // Description (may be empty, skip if so)
+    let descEl;
     if (cardContent) {
-      const title = cardContent.querySelector('.msc-direct-integrations__card-title');
-      if (title && title.textContent.trim()) {
-        const strong = document.createElement('strong');
-        strong.textContent = title.textContent.trim();
-        textContent.push(strong);
-      }
-      // Description (even if empty <p>)
       const descDiv = cardContent.querySelector('.msc-direct-integrations__card-description');
       if (descDiv) {
-        // If there are <p> tags, include them, even if empty (to match example)
-        const descPs = descDiv.querySelectorAll('p');
-        if (descPs.length > 0) {
-          descPs.forEach((p) => {
-            // Always include the <p> for semantic structure, even if it's empty
-            textContent.push(p);
-          });
-        } else {
-          // If no <p> present, add an empty <p> for structural consistency
-          const emptyP = document.createElement('p');
-          textContent.push(emptyP);
-        }
-      } else {
-        // If no descDiv at all, add an empty <p> for structural consistency
-        const emptyP = document.createElement('p');
-        textContent.push(emptyP);
-      }
-      // CTA link
-      const link = cardContent.querySelector('a[href]');
-      if (link && link.textContent && link.href) {
-        // Clone the link to not move it from the DOM
-        const linkClone = link.cloneNode(true);
-        const linkP = document.createElement('p');
-        linkP.appendChild(linkClone);
-        textContent.push(linkP);
+        // Grab first non-empty <p>
+        descEl = Array.from(descDiv.querySelectorAll('p')).find(p => p.textContent.trim().length > 0);
+        if (descEl) textContent.push(descEl);
       }
     }
-    rows.push([
-      imgCell,
-      textContent
-    ]);
+
+    // CTA link (optional)
+    let linkEl;
+    if (cardContent) {
+      linkEl = cardContent.querySelector('a[href]');
+      if (linkEl) {
+        // Add a <br> before the CTA if there is other content
+        if (textContent.length > 0) {
+          textContent.push(document.createElement('br'));
+        }
+        textContent.push(linkEl);
+      }
+    }
+
+    // Add row only if we have at least image and some text content
+    if (imgEl && textContent.length > 0) {
+      cells.push([imgEl, textContent]);
+    } else if (imgEl) {
+      // Fallback: just image if no text
+      cells.push([imgEl, '']);
+    } else if (textContent.length > 0) {
+      // Fallback: just text if no image
+      cells.push(['', textContent]);
+    } // If both missing, skip row
   });
-  const cells = [headerRow, ...rows];
-  const table = WebImporter.DOMUtils.createTable(cells, document);
-  element.replaceWith(table);
+
+  // Create table using WebImporter helper and replace the original element
+  const block = WebImporter.DOMUtils.createTable(cells, document);
+  element.replaceWith(block);
 }

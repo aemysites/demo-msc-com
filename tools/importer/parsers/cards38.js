@@ -1,68 +1,61 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Prepare block header
   const headerRow = ['Cards (cards38)'];
   const rows = [headerRow];
 
-  // Get all direct card elements
-  const cardEls = element.querySelectorAll('.msc-press-room-news-list__item');
+  // Get all direct card items
+  const items = Array.from(element.querySelectorAll(':scope > .msc-press-room-news-list__item'));
 
-  cardEls.forEach((card) => {
-    // First column: image (reference existing img element)
-    let image = null;
-    const imgWrap = card.querySelector('.msc-press-room-news-list__item-image');
-    if (imgWrap) {
-      const img = imgWrap.querySelector('img');
-      if (img) {
-        image = img;
-      }
-    }
+  items.forEach((item) => {
+    // IMAGE: always present
+    const imgSpan = item.querySelector('.msc-press-room-news-list__item-image');
+    let imageEl = imgSpan ? imgSpan.querySelector('img') : null;
 
-    // Second column: text content
-    // We'll reference the pieces of the original DOM where possible
-    const parts = [];
+    // RIGHT CELL: text content
+    const infoDiv = item.querySelector('.msc-press-room-news-list__item-info');
+    const categoryP = imgSpan ? imgSpan.querySelector('.msc-press-room-news-list__item-category') : null;
+    const dateP = infoDiv ? infoDiv.querySelector('.msc-press-room-news-list__item-date') : null;
+    const titleP = infoDiv ? infoDiv.querySelector('.msc-press-room-news-list__item-title') : null;
+    const readMoreA = infoDiv ? infoDiv.querySelector('a.msc-press-room-news-list__item-link') : null;
 
-    // Category (optional, as a label at top if present)
-    const cat = card.querySelector('.msc-press-room-news-list__item-category');
-    if (cat && cat.textContent.trim()) {
-      const catSpan = document.createElement('span');
-      catSpan.textContent = cat.textContent.trim();
-      catSpan.className = 'card-category';
-      parts.push(catSpan);
-      parts.push(document.createElement('br'));
+    const textElements = [];
+
+    // Category as label (optional)
+    if (categoryP && categoryP.textContent.trim()) {
+      const label = document.createElement('div');
+      label.textContent = categoryP.textContent.trim();
+      label.style.fontWeight = 'bold';
+      label.style.fontSize = '0.9em';
+      textElements.push(label);
     }
     // Date (optional)
-    const date = card.querySelector('.msc-press-room-news-list__item-date');
-    if (date && date.textContent.trim()) {
-      const dateP = document.createElement('span');
-      dateP.textContent = date.textContent.trim();
-      dateP.className = 'card-date';
-      parts.push(dateP);
-      parts.push(document.createElement('br'));
+    if (dateP && dateP.textContent.trim()) {
+      const date = document.createElement('div');
+      date.textContent = dateP.textContent.trim();
+      date.style.fontSize = 'smaller';
+      textElements.push(date);
     }
-    // Title (mandatory, styled as heading)
-    const title = card.querySelector('.msc-press-room-news-list__item-title');
-    if (title && title.textContent.trim()) {
-      const titleStrong = document.createElement('strong');
-      titleStrong.textContent = title.textContent.trim();
-      parts.push(titleStrong);
-      parts.push(document.createElement('br'));
+    // Title (required)
+    if (titleP && titleP.textContent.trim()) {
+      const heading = document.createElement('strong');
+      heading.textContent = titleP.textContent.trim();
+      textElements.push(heading);
     }
-    // CTA (Read more link, optional)
-    const link = card.querySelector('a.msc-press-room-news-list__item-link');
-    if (link) {
-      // Use the existing link element, but ensure it's not removed from DOM yet
-      parts.push(link);
+    // Call to Action (optional)
+    if (readMoreA) {
+      // Reference the existing anchor, but strip any classes for cleanliness
+      const link = readMoreA;
+      link.removeAttribute('class');
+      textElements.push(document.createElement('br'));
+      textElements.push(link);
     }
 
-    // Add the row to the table
     rows.push([
-      image,
-      parts
+      imageEl,
+      textElements
     ]);
   });
 
-  // Create and replace with block table
   const table = WebImporter.DOMUtils.createTable(rows, document);
   element.replaceWith(table);
 }

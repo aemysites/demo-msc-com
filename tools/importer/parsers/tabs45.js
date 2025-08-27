@@ -1,56 +1,47 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Block name for header
+  // Find all direct tab panel children
+  const tabPanels = element.querySelectorAll(':scope > .msc-tabs__panel');
+
+  // Header row must match the example exactly
   const headerRow = ['Tabs (tabs45)'];
-  // Collect all tab panels
-  const panels = Array.from(element.querySelectorAll(':scope > div'));
-  // Each panel should produce a row: [Tab Label, Tab Content]
-  const rows = panels.map((panel, idx) => {
-    // Try to deduce a tab label from x-show attribute or inner content
-    let tabLabel = '';
-    const xShow = panel.getAttribute('x-show');
-    if (xShow) {
-      // Typical format: tab === 'DijitalKonteynerTasimacilikDernegiDcsa'
-      const match = xShow.match(/tab\s*===\s*['"]([^'"]+)['"]/);
-      tabLabel = match ? match[1] : '';
-      // Try to prettify label (use heuristics)
-      // For specific known values, convert to public-facing labels
-      if (/DijitalKonteynerTasimacilikDernegiDcsa/i.test(tabLabel)) tabLabel = 'DCSA';
-      else if (/Bmedifact/i.test(tabLabel)) tabLabel = 'BM/EDIFact';
-      else if (/AmericanNationalStandardsİnstituteAnsix12/i.test(tabLabel)) tabLabel = 'ANSI X12';
-      else if (/Smdg/i.test(tabLabel)) tabLabel = 'SMDG';
-      else if (/UluslararasiKonteynerBurosuBic/i.test(tabLabel)) tabLabel = 'BIC';
-      else if (tabLabel) {
-        // For camel case, try to split for readability
-        tabLabel = tabLabel.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/_/g, ' ');
-      }
+
+  // Map tab keys (from x-show) to tab labels, using content as fallback
+  // Turkish keys to meaningful tab names
+  const tabLabelMap = {
+    'DijitalKonteynerTasimacilikDernegiDcsa': 'DCSA',
+    'Bmedifact': 'EDIFact',
+    'AmericanNationalStandardsİnstituteAnsix12': 'ANSI X12',
+    'Smdg': 'SMDG',
+    'UluslararasiKonteynerBurosuBic': 'BIC',
+  };
+
+  // Compose table rows
+  const rows = [headerRow];
+
+  tabPanels.forEach(panel => {
+    // Find tab key from x-show attr
+    const xShow = panel.getAttribute('x-show') || '';
+    let tabKey = '';
+    const match = xShow.match(/tab\s*===\s*['"]([^'"]+)/);
+    if (match) {
+      tabKey = match[1];
     }
-    // If failed, fallback to first link text within content
-    if (!tabLabel) {
-      const firstLink = panel.querySelector('a');
-      if (firstLink && firstLink.textContent.trim()) {
-        tabLabel = firstLink.textContent.trim();
-      }
+    // Attempt to get label from map, fallback to tabKey or fallback to generic label
+    let tabLabel = tabLabelMap[tabKey] || tabKey || 'Tab';
+
+    // Extract tab content: find .msc-bodytext, else take all panel children
+    let tabContent = panel.querySelector('.msc-bodytext');
+    if (!tabContent) {
+      // If not found, use all children as an array
+      tabContent = Array.from(panel.children);
+      // If still empty, use empty string
+      if (tabContent.length === 0) tabContent = '';
     }
-    // Still no label? Fallback to index
-    if (!tabLabel) {
-      tabLabel = 'Tab ' + (idx + 1);
-    }
-    // Tab content: use the .msc-bodytext container or fallback to all content
-    let contentEl = panel.querySelector('.msc-bodytext');
-    if (!contentEl) {
-      // Fallback: use all children except script elements
-      const frag = document.createDocumentFragment();
-      Array.from(panel.children).forEach(child => {
-        if (child.tagName !== 'SCRIPT') frag.appendChild(child);
-      });
-      contentEl = frag;
-    }
-    // Return row: label, content element or fragment
-    return [tabLabel, contentEl];
+    rows.push([tabLabel, tabContent]);
   });
-  // Prepend header
-  const cells = [headerRow, ...rows];
-  const block = WebImporter.DOMUtils.createTable(cells, document);
+
+  // Create the table and replace the original element
+  const block = WebImporter.DOMUtils.createTable(rows, document);
   element.replaceWith(block);
 }
