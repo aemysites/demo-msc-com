@@ -47,28 +47,30 @@
   }
 }
 
+
 .hero.hero3 {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
-  width: 100vw;
   min-height: 340px;
-  background: none;
-  padding: 0;
+  width: 100vw;
   box-sizing: border-box;
-  position: relative;
   overflow: hidden;
+  background: transparent;
 }
 
+/* Left (image) side */
 .hero.hero3 > div:first-child {
-  flex: 1 1 60%;
+  flex: 1 1 58%;
   min-width: 0;
-  height: auto;
   display: flex;
   align-items: stretch;
-  justify-content: flex-start;
-  position: relative;
-  z-index: 1;
+  justify-content: flex-end;
+  height: 100%;
+  background: transparent;
+
+  /* Remove any extra padding or margin */
+  padding: 0;
+  margin: 0;
 }
 
 .hero.hero3 > div:first-child > div {
@@ -77,119 +79,113 @@
   display: flex;
   align-items: stretch;
   justify-content: stretch;
+  padding: 0;
+  margin: 0;
 }
 
-.hero.hero3 > div:first-child picture,
+.hero.hero3 > div:first-child picture {
+  width: 100%;
+  height: 100%;
+  display: flex; /* Ensure fills the parent */
+}
+
 .hero.hero3 > div:first-child img {
   width: 100%;
-  height: 340px;
-  min-height: 340px;
+  height: 100%;
   object-fit: cover;
   display: block;
+  background: transparent;
   border: none;
-  background: none;
-}
-
-/* Ensure image is visible even if parent containers are collapsed */
-.hero.hero3 > div:first-child,
-.hero.hero3 > div:first-child > div {
   min-height: 340px;
-  height: 340px;
 }
 
-/* CONTENT COLUMN - RIGHT SIDE */
+/* Right (text) side */
 .hero.hero3 > div:last-child {
-  flex: 1 1 40%;
-  min-width: 0;
+  flex: 1 1 42%;
+  min-width: 340px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: relative;
-  z-index: 2;
-  padding-left: 0;
-  padding-right: 0;
+  background: #f7f7f7;
+  height: 100%;
+  padding: 0 48px;
+  box-sizing: border-box;
+  box-shadow: none;
 }
 
 .hero.hero3 > div:last-child > div {
   width: 100%;
-  max-width: 430px;
+  max-width: 440px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   gap: 24px;
-  margin-top: 0;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0;
+  box-shadow: none;
 }
 
-/* HEADLINE */
 .hero.hero3 h2 {
   font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-xl);
+  font-size: 2.25rem;
   font-weight: 700;
-  color: #111;
+  color: #000;
   margin: 0 0 12px;
   line-height: 1.1;
   text-align: left;
+  padding-bottom: 12px;
+  border-bottom: 4px solid #FFD600;
+  box-shadow: none;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
-/* SUBTITLE - with accent */
+/* Accent bar using a real element instead of ::after so it's always visible */
+
 .hero.hero3 > div:last-child p:not(.button-container) {
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-xs);
-  color: #666;
-  margin: 0 0 24px;
+  font-size: 1rem;
+  color: #5E6A71;
+  margin: 0 0 32px;
   line-height: 1.5;
-  position: relative;
-  padding-left: 24px;
   text-align: left;
+  padding: 0;
+  position: static;
 }
 
-/* ACCENT BAR for subtitle */
+/* Remove yellow bar from subtitle if present */
 .hero.hero3 > div:last-child p:not(.button-container)::before {
-  display: block;
-  width: 16px;
-  height: 3px;
-  background: #FFD600;
-  border-radius: 2px;
-  position: absolute;
-  left: 0;
-  top: 0.8em;
+  display: none;
 }
 
-/* BUTTON CONTAINER */
 .hero.hero3 .button-container {
   margin-top: 0;
   width: 100%;
+  display: flex;
+  justify-content: flex-start;
 }
 
-/* BUTTON override */
-.hero-container > .hero-wrapper > .block.hero.hero3 .button {
+.hero.hero3 .button {
   background: #222;
   color: #fff;
-  border-radius: 2em;
-  font-size: var(--body-font-size-xs);
+  border-radius: 999px;
+  font-size: 1rem;
   font-weight: 500;
-  padding: 12px 36px 12px 28px;
+  padding: 12px 32px;
   line-height: 1.25;
   box-shadow: none;
   border: none;
   outline: none;
   transition: background 0.2s;
-  position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   text-align: center;
+  min-width: 140px;
+  justify-content: center;
 }
 
-/* Button hover/focus style */
-.hero-container > .hero-wrapper > .block.hero.hero3 .button:hover,
-.hero-container > .hero-wrapper > .block.hero.hero3 .button:focus {
-  background: #333;
-  color: #fff;
-}
-
-/* Responsive: stack columns and center content on small screens */
+/* Responsive Layout: Stack on mobile */
 @media (width <= 900px) {
   .hero.hero3 {
     flex-direction: column;
@@ -199,30 +195,42 @@
 
   .hero.hero3 > div:first-child,
   .hero.hero3 > div:last-child {
-    min-width: 0;
     width: 100%;
+    min-width: 0;
     height: auto;
+    min-height: 0;
     padding: 0;
     justify-content: center;
     align-items: center;
   }
 
-  .hero.hero3 > div:first-child picture,
   .hero.hero3 > div:first-child img {
+    height: 180px;
     min-height: 180px;
     max-height: 300px;
-    height: 180px;
   }
 
   .hero.hero3 > div:last-child {
     padding: 32px 16px 0;
     align-items: center;
     justify-content: center;
+    background: #f7f7f7;
   }
 
   .hero.hero3 > div:last-child > div {
     max-width: 100%;
     gap: 14px;
     margin-top: 0;
+    align-items: center;
   }
+
+  .hero.hero3 .button-container {
+    justify-content: center;
+  }
+}
+
+/* Utility: Remove unwanted margin from p, h2 in this block */
+.hero.hero3 h2,
+.hero.hero3 p {
+  margin-top: 0;
 }
