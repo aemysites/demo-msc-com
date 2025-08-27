@@ -842,7 +842,6 @@
   position: relative;
 }
 
-/* Hide the image element as background is used */
 .hero.hero41 > div:first-child img {
   display: none;
 }
@@ -855,7 +854,6 @@
   margin: 0;
 }
 
-/* Right content block: push extremely close to right/top, tight width */
 .hero.hero41 > div:last-child {
   display: flex;
   flex-direction: column;
@@ -868,7 +866,6 @@
   z-index: 2;
 }
 
-/* Heading adjustments */
 .hero.hero41 h2 {
   color: #fff;
   font-size: 2.2rem;
@@ -881,7 +878,6 @@
   padding-bottom: 2px;
 }
 
-/* Accent line below heading: very short and minimal gap */
 .hero.hero41 h2::after {
   display: block;
   width: 18px;
@@ -891,7 +887,6 @@
   margin: -2px 0 2px auto;
 }
 
-/* Button container: keep button tight under accent line, right-aligned */
 .hero.hero41 .button-container {
   margin-top: 0;
   width: 100%;
@@ -899,7 +894,6 @@
   justify-content: flex-end;
 }
 
-/* Button: outlined style and spacing */
 .hero-container > .hero-wrapper > .block.hero.hero41 .button {
   background: transparent;
   color: #fff;
@@ -914,14 +908,12 @@
   box-shadow: none;
 }
 
-/* Button hover/focus */
 .hero-container > .hero-wrapper > .block.hero.hero41 .button:hover,
 .hero-container > .hero-wrapper > .block.hero.hero41 .button:focus {
   background: rgb(255 255 255 / 8%);
   color: #fff;
 }
 
-/* Responsive: stack and center on small screens */
 @media (width <= 900px) {
   .hero.hero41 {
     flex-direction: column;
@@ -953,5 +945,166 @@
 
   .hero.hero41 .button-container {
     justify-content: center;
+  }
+}
+
+
+.hero.hero42 {
+  width: 100vw;
+  max-width: 100vw;
+  min-height: 320px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  background-image: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Only hide the actual image, not the content blocks */
+.hero.hero42 img {
+  display: none;
+}
+
+/* Content column, now with align-items: flex-end for grouping and consistent right padding */
+.hero.hero42 > div:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  width: 48vw;
+  min-width: 320px;
+  max-width: 620px;
+  padding-right: 6vw;
+  padding-left: 1vw;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+/* Inner vertical stack: group headline, underline, and button in a right-aligned column */
+.hero.hero42 > div:last-child > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 32px;
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Headline styling */
+.hero.hero42 h2 {
+  color: #fff;
+  font-size: 2.3rem;
+  font-weight: 700;
+  margin: 0 0 0.25em;
+  line-height: 1.15;
+  text-align: right;
+  width: 100%;
+  position: relative;
+  border-bottom: none;
+  padding-bottom: 0;
+  display: inline-block;
+}
+
+/* Short gold underline as a styled block after h2 (works if there is, for example, an empty <p> after h2) */
+.hero.hero42 h2 + p {
+  display: block;
+  width: 54px;
+  height: 4px;
+  background: #E3C873;
+  border-radius: 2px;
+  margin: 0.3em 0 0.8em;
+  align-self: flex-end;
+}
+
+/* Button container: right-aligned within text column */
+.hero.hero42 .button-container {
+  margin-top: 0;
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+/* Button style */
+.hero.hero42 .button-container .button {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 24px;
+  padding: 10px 32px;
+  font-size: 1.07rem;
+  font-weight: 500;
+  box-shadow: none;
+  transition: background 0.2s, color 0.2s;
+  text-align: center;
+  margin: 0;
+  min-width: 150px;
+}
+
+.hero.hero42 .button-container .button:hover,
+.hero.hero42 .button-container .button:focus {
+  background: rgb(255 255 255 / 15%);
+  color: #fff;
+}
+
+.hero.hero42 h2,
+.hero.hero42 p,
+.hero.hero42 a,
+.hero.hero42 .button {
+  color: #fff;
+}
+
+/* Responsive: stack vertically and center on mobile */
+@media (width <= 900px) {
+  .hero.hero42 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 0;
+  }
+
+  .hero.hero42 > div:last-child {
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    min-width: 0;
+    max-width: 100vw;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .hero.hero42 > div:last-child > div {
+    align-items: center;
+    text-align: center;
+    max-width: 100vw;
+    gap: 24px;
+  }
+
+  .hero.hero42 h2 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0.25em;
+  }
+
+  .hero.hero42 h2 + p {
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+  }
+
+  .hero.hero42 .button-container {
+    justify-content: center;
+    align-items: center;
   }
 }
