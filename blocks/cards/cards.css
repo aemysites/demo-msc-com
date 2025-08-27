@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .cards > ul {
   list-style: none;
   margin: 0;
@@ -156,7 +157,7 @@
   list-style: none;
   width: 100%;
   min-height: 540px;
-  height: 78vw; /* Tall, dramatic vertical rectangle for desktop */
+  height: 78vw;
   max-height: 670px;
   box-sizing: border-box;
 }
@@ -201,7 +202,7 @@
   justify-content: center;
   overflow: hidden;
   height: 100%;
-  max-width: 240px; /* Make columns narrower for a tall look */
+  max-width: 240px;
 }
 
 .cards.cards4 .cards-card-image {
@@ -221,7 +222,6 @@
   display: block;
 }
 
-/* Gradient overlay starts much higher and is more opaque for contrast */
 .cards.cards4 > ul > li::after {
   position: absolute;
   inset: 0;
@@ -235,7 +235,6 @@
   );
 }
 
-/* Anchor content as close to the bottom as possible, with enough padding for breathing room */
 .cards.cards4 .cards-card-body {
   position: absolute;
   left: 0;
@@ -249,11 +248,10 @@
   align-items: center;
   justify-content: flex-end;
   text-align: center;
-  padding: 0 16px 7vw; /* Increased bottom padding for breathing room */
+  padding: 0 16px 7vw;
   min-height: 0;
 }
 
-/* Headline: bold, white, balanced spacing below */
 .cards.cards4 .cards-card-body strong {
   color: #fff;
   font-size: 1.45rem;
@@ -267,7 +265,6 @@
   text-align: center;
 }
 
-/* Supporting text: white, regular, balanced spacing */
 .cards.cards4 .cards-card-body p,
 .cards.cards4 .cards-card-body a {
   color: #fff;
@@ -294,7 +291,6 @@
   background: none;
 }
 
-/* Responsive: Make cards taller and stack on mobile for best appearance */
 @media (width <= 600px) {
   .cards.cards4 > ul {
     flex-direction: column;
@@ -313,4 +309,175 @@
     position: static;
     padding-bottom: 24px;
   }
+}
+
+
+.cards.cards6 {
+  background: #fff;
+  padding: 40px 0 0;
+  max-width: 1264px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Use flex row, align cards to top, add extra gap at bottom for cleaner look */
+.cards.cards6 > ul {
+  display: flex;
+  flex-direction: row;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 40px;
+  overflow: auto visible;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+
+/* Card: slightly wider, extra bottom margin for hover shadow, align contents */
+.cards.cards6 > ul > li {
+  flex: 0 0 312px;
+  width: 312px;
+  min-width: 312px;
+  max-width: 312px;
+  min-height: 410px;
+  background: #fff;
+  box-shadow: 0 2px 16px rgb(0 0 0 / 8%);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: none;
+  transition: box-shadow 0.22s;
+  position: relative;
+  align-items: stretch;
+  margin-bottom: 16px;
+}
+
+/* Card hover effect: more prominent */
+.cards.cards6 > ul > li:hover {
+  box-shadow: 0 10px 28px rgb(0 0 0 / 14%);
+}
+
+/* Card top image: always 182px tall, round top corners */
+.cards.cards6 .cards-card-image,
+.cards.cards6 .cards-card-body > p > img {
+  width: 100%;
+  height: 182px;
+  object-fit: cover;
+  display: block;
+  background: #f8f8f8;
+  border-bottom: 1px solid #eee;
+  margin: 0;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+}
+
+/* Card body: tighter vertical stack, slightly more padding */
+.cards.cards6 .cards-card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 22px 20px 20px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Headline: larger, bolder, slightly more vertical separation */
+.cards.cards6 .cards-card-body > p > strong {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: #222;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.28;
+  margin-bottom: 14px;
+  letter-spacing: 0.01em;
+}
+
+/* Description: slightly smaller, lighter, larger gap from headline */
+.cards.cards6 .cards-card-body > p:not(.button-container, :has(strong)) {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.45;
+}
+
+/* Button container: always pinned to bottom, add left alignment */
+.cards.cards6 .button-container {
+  margin-top: auto;
+  padding-top: 10px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* Button: left aligned, uppercase, bolder, slightly larger arrow, more gap override conflicting base styles */
+.cards.cards6 .button {
+  background: none;
+  color: #222;
+  text-transform: uppercase;
+  font-size: 1.04rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  text-align: left;
+  line-height: 1.2;
+  max-width: unset;
+  min-width: unset;
+}
+
+/* Gold circular arrow as SVG background, slightly larger and more gap */
+.cards.cards6 .button::after {
+  display: inline-block;
+  margin-left: 12px;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  background: url('data:image/svg+xml;utf8,<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="%23FFD700"/><path d="M10 7l5 4-5 4" stroke="%23222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') center center no-repeat;
+  background-size: 22px 22px;
+  content: "";
+}
+
+/* Responsive: stack cards vertically on small screens, full width cards */
+@media (width <= 900px) {
+  .cards.cards6 {
+    padding: 18px 0 0;
+    max-width: 100vw;
+  }
+
+  .cards.cards6 > ul {
+    flex-direction: column;
+    gap: 18px;
+    overflow-x: visible;
+    padding-bottom: 18px;
+  }
+
+  .cards.cards6 > ul > li {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    flex: 1 1 100%;
+    margin-bottom: 10px;
+  }
+}
+
+/* Accessibility: focus for button */
+.cards.cards6 .button:focus {
+  outline: 2px solid #FFD700;
+  outline-offset: 1px;
 }
