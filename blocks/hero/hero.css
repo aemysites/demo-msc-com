@@ -505,7 +505,6 @@
   line-height: 1.2;
 }
 
-/* Main row layout and improved vertical alignment */
 .hero.hero35 h3 + p {
   margin: 0;
   font-size: 12px;
@@ -517,11 +516,10 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  line-height: 1.6; /* Helps vertical centering for text */
-  padding-top: 2px;  /* Nudge text downward for alignment */
+  line-height: 1.6;
+  padding-top: 2px;
 }
 
-/* Improved vertical alignment for the button */
 .hero.hero35 h3 + p::after {
   display: inline-block;
   width: 28px;
@@ -535,7 +533,7 @@
   background-size: 14px 14px;
   vertical-align: middle;
   position: relative;
-  top: 1px; /* Nudge button down for perfect centering */
+  top: 1px;
   content: "";
 }
 
@@ -561,5 +559,101 @@
     gap: 6px;
     font-size: 11px;
     padding-top: 1px;
+  }
+}
+
+
+.hero.hero36 {
+  background: #f4dc94;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  min-height: unset;
+  gap: 40px;
+}
+
+.hero.hero36 > div {
+  /* This targets the two second-level divs and puts them side by side */
+  display: contents;
+}
+
+.hero.hero36 > div:nth-child(1) {
+  /* Empty div - ensure it takes no space */
+  width: 0;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.hero.hero36 > div:nth-child(2) {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  justify-content: flex-start;
+}
+
+.hero.hero36 > div:nth-child(2) > div {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.hero.hero36 h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222;
+  margin: 0;
+  line-height: 1.2;
+  font-family: var(--heading-font-family);
+}
+
+.hero.hero36 p {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  background: #222;
+  color: #fff;
+  border-radius: 24px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 10px 24px 10px 20px;
+  box-shadow: 0 2px 8px rgb(40 40 40 / 5%);
+  cursor: pointer;
+  border: none;
+  height: 40px;
+  min-width: 110px;
+  justify-content: center;
+}
+
+/* Responsive stacking for smaller screens */
+@media (width <= 600px) {
+  .hero.hero36 {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px 12px;
+  }
+
+  .hero.hero36 > div:nth-child(2) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .hero.hero36 > div:nth-child(2) > div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .hero.hero36 p {
+    margin-left: 0;
+    margin-top: 8px;
+    width: 100%;
+    min-width: 0;
   }
 }
