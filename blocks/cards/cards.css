@@ -898,7 +898,6 @@
   box-sizing: border-box;
 }
 
-/* Center the last row with two cards in a grid of 8 items and 3 columns */
 @media (width >= 901px) {
   .cards.cardsnoimages30 > ul > li:nth-child(7) {
     grid-column: 2;
@@ -936,7 +935,6 @@
   }
 }
 
-/* Card body vertical stack */
 .cards.cardsnoimages30 .cards-card-body {
   margin: 0;
   padding: 28px 24px 24px;
@@ -945,13 +943,11 @@
   height: 100%;
 }
 
-/* Text styling */
 .cards.cardsnoimages30 .cards-card-body p {
   margin: 0 0 8px;
   padding: 0;
 }
 
-/* Date line */
 .cards.cardsnoimages30 .cards-card-body p:first-of-type {
   font-size: 13px;
   color: #757575;
@@ -961,7 +957,6 @@
   text-transform: uppercase;
 }
 
-/* Title line */
 .cards.cardsnoimages30 .cards-card-body p:nth-of-type(2) {
   font-size: 17px;
   color: #181818;
@@ -970,11 +965,183 @@
   line-height: 1.25;
 }
 
-/* Subtitle/tag line */
 .cards.cardsnoimages30 .cards-card-body p:last-of-type {
   font-size: 14px;
   color: #A0A0A0;
   font-weight: 400;
   margin-bottom: 0;
   margin-top: auto;
+}
+
+
+.cards.cards37 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  box-sizing: border-box;
+}
+
+/* Tighter grid gap and maintain horizontal layout */
+.cards.cards37 > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 14px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Card base with visible image */
+.cards.cards37 > ul > li {
+  position: relative;
+  aspect-ratio: 5/3;
+  min-height: 180px;
+  background: transparent;
+  border: none;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Card image fills card; not hidden */
+.cards.cards37 > ul > li .cards-card-body:first-child {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cards.cards37 > ul > li .cards-card-body:first-child img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  display: block;
+  background: #222;
+  pointer-events: none;
+  opacity: 1;
+}
+
+/* Still hide broken image icon only if src is invalid */
+.cards.cards37 > ul > li .cards-card-body:first-child img[src="about:error"] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Overlay gradient covers only lower 60% */
+.cards.cards37 > ul > li::before {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 60%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to top, rgb(0 0 0 / 76%) 0%, rgb(0 0 0 / 0%) 100%);
+  border-radius: 0;
+  content: "";
+}
+
+/* Position text block closer to card edge */
+.cards.cards37 > ul > li .cards-card-body:last-child {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: auto;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+.cards.cards37 > ul > li .cards-card-body:last-child p {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.09rem;
+  line-height: 1.24;
+}
+
+.cards.cards37 > ul > li .cards-card-body:last-child strong {
+  display: block;
+  color: #fff;
+  font-size: 1.19rem;
+  font-weight: 700;
+  line-height: 1.18;
+  margin-bottom: 8px;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 4px rgb(0 0 0 / 19%);
+}
+
+/* Read more link and icon */
+.cards.cards37 > ul > li .cards-card-body:last-child a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  border: 0;
+  transition: color 0.2s;
+}
+
+.cards.cards37 > ul > li .cards-card-body:last-child a:hover {
+  color: #edd57c;
+}
+
+/* Gold icon for Read more */
+.cards.cards37 > ul > li .cards-card-body:last-child a::after {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin-left: 4px;
+  border-radius: 50%;
+  background: #edd57c
+    url("data:image/svg+xml,%3Csvg width='13' height='13' viewBox='0 0 13 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 4L8 6.5L5 9' stroke='%23505050' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    no-repeat center/13px 13px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+}
+
+/* Responsive stacking */
+@media (width <= 800px) {
+  .cards.cards37 > ul {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .cards.cards37 > ul > li {
+    aspect-ratio: 5/3;
+    min-height: 140px;
+  }
+
+  .cards.cards37 > ul > li .cards-card-body:last-child {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    gap: 7px;
+  }
 }
