@@ -166,7 +166,6 @@
   margin: 0;
 }
 
-/* Layout: columns side by side */
 .columns.columns11 > div {
   display: flex;
   flex-direction: row;
@@ -183,7 +182,6 @@
   }
 }
 
-/* Each column: vertically stacked, centered */
 .columns.columns11 > div > div {
   display: flex;
   flex-direction: column;
@@ -195,7 +193,6 @@
   position: relative;
 }
 
-/* Top icon placeholders for first three columns using background SVGs, tight top margin */
 .columns.columns11 > div > div:nth-child(1) {
   min-height: 100px;
   background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' stroke='%23222222' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='22' r='10'/%3E%3Crect x='18' y='10' width='4' height='4'/%3E%3Cpath d='M20 22 V16'/%3E%3C/svg%3E") no-repeat top center;
@@ -226,7 +223,6 @@
   margin-top: 0;
 }
 
-/* iReefer image sizing and spacing: tight to top, tight to divider */
 .columns.columns11 > div > div:nth-child(4) picture,
 .columns.columns11 > div > div:nth-child(4) img {
   display: block;
@@ -237,8 +233,6 @@
   max-width: 40px;
   max-height: 40px;
 }
-
-/* Dotted divider: place AFTER icon/image and BEFORE text for each column */
 
 .columns.columns11 > div > div:nth-child(1)::after,
 .columns.columns11 > div > div:nth-child(2)::after,
@@ -251,10 +245,6 @@
   background-repeat: repeat-x;
   background-size: 12px 8px;
   border: none;
-
-  /* Use empty string for content so it's strictly decorative */
-
-  /* To visually create a divider between icon background and text */
   content: "";
 }
 
@@ -264,7 +254,6 @@
   margin-top: 0;
 }
 
-/* iReefer divider after image */
 .columns.columns11 > div > div:nth-child(4) picture + p,
 .columns.columns11 > div > div:nth-child(4) img + p {
   position: relative;
@@ -284,12 +273,10 @@
   content: "";
 }
 
-/* Only apply divider before the first block of text in the 4th column */
 .columns.columns11 > div > div:nth-child(4) p:not(:first-child)::before {
   display: none;
 }
 
-/* Text styling */
 .columns.columns11 > div > div p {
   color: #555;
   font-size: 13px;
@@ -298,7 +285,6 @@
   margin: 0;
 }
 
-/* Remove default image scaling to 100% width */
 .columns.columns11 img {
   width: 40px;
   height: 40px;
@@ -309,10 +295,88 @@
   margin: 0 auto 12px;
 }
 
-/* Responsive stacking for mobile */
 @media (width <= 900px) {
   .columns.columns11 > div > div {
     min-height: 80px;
     padding-top: 0;
+  }
+}
+
+
+.columns.columns14 > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+
+  /* Dotted separator: centered, tightly grouped under columns, not too wide */
+  background:
+    repeating-linear-gradient(
+      to right,
+      #f5d98c 0 6px,
+      transparent 6px 12px
+    );
+  background-size: 42% 8px;
+  background-repeat: no-repeat;
+  background-position: center 100px;
+}
+
+@media (width <= 899px) {
+  .columns.columns14 > div {
+    flex-direction: column;
+    align-items: stretch;
+    background: none;
+  }
+}
+
+.columns.columns14 > div > div {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  /* Tighter vertical grouping for icon/text/dots */
+  padding: 18px 12px 0;
+  box-sizing: border-box;
+  min-height: 120px;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 48px 48px;
+}
+
+.columns.columns14 > div > div:nth-child(1) {
+  background-image: url('data:image/svg+xml;utf8,<svg width="48" height="48" viewBox="0 0 40 40" fill="none" stroke="black" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="16" width="24" height="16" rx="3"/><rect x="10" y="8" width="20" height="8" rx="2"/><line x1="12" y1="24" x2="12" y2="32"/><line x1="20" y1="24" x2="20" y2="32"/><line x1="28" y1="24" x2="28" y2="32"/></svg>');
+}
+
+.columns.columns14 > div > div:nth-child(2) {
+  background-image: url('data:image/svg+xml;utf8,<svg width="48" height="48" viewBox="0 0 40 40" fill="none" stroke="black" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="8"/><circle cx="28" cy="24" r="6"/><path d="M10 32c0-4 4-6 8-6s8 2 8 6"/><path d="M28 24v8"/></svg>');
+}
+
+.columns.columns14 > div > div:nth-child(3) {
+  background-image: url('data:image/svg+xml;utf8,<svg width="48" height="48" viewBox="0 0 40 40" fill="none" stroke="black" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="20" height="20" rx="4"/><rect x="15" y="15" width="10" height="10" rx="2"/><line x1="10" y1="20" x2="30" y2="20"/><line x1="20" y1="10" x2="20" y2="30"/></svg>');
+}
+
+.columns.columns14 > div > div p {
+  margin: 8px 0 0;
+  color: #222;
+  font-size: 13px;
+  line-height: 1.3;
+  text-align: center;
+  font-family: var(--body-font-family);
+  max-width: 160px;
+}
+
+@media (width <= 899px) {
+  .columns.columns14 > div > div {
+    padding-top: 20px;
+    background-size: 40px 40px;
+  }
+
+  .columns.columns14 > div > div p {
+    margin-top: 8px;
   }
 }
